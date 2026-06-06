@@ -121,30 +121,53 @@ function initFanCarousel() {
     return fanConfig.initial + progress * STEPS;
   }
 
-  let rafId = null;
-  function update() {
-    const active = getActiveFraction();
+  /* Lerp-інтерполяція: currentActive плавно наздоганяє target.
+     LERP = 0.12 — досить м'яко щоб не дергатись, але не надто лаговано. */
+  const LERP = 0.12;
+  let currentActive = getActiveFraction(); // згладжене значення
+  let loopId = null;
+
+  function applyCards(active) {
     cards.forEach((card, i) => {
       const offset  = i - active;
       const abs     = Math.abs(offset);
       const rot     = offset * fanConfig.rotationStep;
       const opacity = abs > 2.6 ? 0 : abs > 1.8 ? 0.65 : 1;
-      card.style.transform = `rotate(${rot}deg)`;
-      card.style.opacity   = opacity;
+      card.style.transform = `rotate(${rot.toFixed(3)}deg)`;
+      card.style.opacity   = opacity.toFixed(3);
       card.style.zIndex    = Math.round(20 - abs * 4);
     });
-    rafId = null;
+  }
+
+  function loop() {
+    const target = getActiveFraction();
+    const diff   = target - currentActive;
+
+    // Lerp: наближаємось на LERP частку відстані кожен кадр
+    currentActive += diff * LERP;
+
+    applyCards(currentActive);
+
+    // Продовжуємо цикл поки є помітна різниця
+    if (Math.abs(diff) > 0.001) {
+      loopId = requestAnimationFrame(loop);
+    } else {
+      // Знімаємось з RAF — не витрачаємо ресурси в спокої
+      applyCards(target);
+      currentActive = target;
+      loopId = null;
+    }
   }
 
   function scheduleUpdate() {
-    if (!rafId) rafId = requestAnimationFrame(update);
+    if (!loopId) loopId = requestAnimationFrame(loop);
   }
 
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  update();
+  loop(); // початковий стан
 
   /* Відкриваємо API для debug-панелі */
-  window._fanCarousel = { applyConfig, setWrapperHeight, update: scheduleUpdate, updateButtonTop };
+  window._fanCarousel = { applyConfig, setWrapperHeight, update: scheduleUpdate, updateButtonTop, loop };
 }
 
 /* ============================================================
