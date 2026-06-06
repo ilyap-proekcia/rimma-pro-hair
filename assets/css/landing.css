@@ -395,10 +395,72 @@
   padding: clamp(10px, 1.25vw, 24px) 0 clamp(16px, 2vw, 40px);
 }
 
-/* Mobile */
+/* ---- SERVICES MOBILE: нативний swipe замість JS-фану ----
+   На мобілці JS-карусель (scroll events) дергається на iOS.
+   Замінюємо на CSS scroll-snap — hardware-accelerated, ідеально плавно.
+*/
 @media (max-width: 767px) {
+  /* Скасовуємо JS-висоту обгортки */
+  .services-scroll-wrapper { height: auto !important; }
+
+  .services {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    padding-bottom: clamp(32px, 8vw, 48px);
+  }
+
+  .services__ellipse { display: none; }
+
+  /* Горизонтальний scroll-snap контейнер */
   .services__fan {
-    overflow: visible;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: clamp(12px, 4vw, 18px);
+    padding: clamp(60px, 18vw, 80px) clamp(20px, 8vw, 40px) clamp(24px, 6vw, 36px);
+    scroll-padding-left: clamp(20px, 8vw, 40px);
+    scrollbar-width: none;
+  }
+  .services__fan::-webkit-scrollbar { display: none; }
+
+  /* Картки — flex-елементи, перекривають JS inline styles */
+  .services__fan .service-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    margin-left: 0 !important;
+    flex: 0 0 clamp(220px, 68vw, 280px);
+    height: clamp(300px, 82vw, 380px);
+    scroll-snap-align: start;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+    will-change: auto;
+  }
+
+  .services__fan .service-card__photo {
+    width: clamp(110px, 38vw, 160px);
+    height: clamp(150px, 48vw, 210px);
+    top: clamp(-44px, -12vw, -60px);
+  }
+
+  /* Кнопка — нижче каруселі, на повну ширину */
+  .services__actions {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    padding: 0 clamp(20px, 8vw, 40px);
+  }
+  .services__actions .btn {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
