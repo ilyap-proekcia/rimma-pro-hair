@@ -68,9 +68,6 @@ function initScrollAnimations() {
    - На мобайлі нативний тач-скрол → все працює само.
    ============================================================ */
 function initFanCarousel() {
-  // На мобілці (≤767px) — нативний CSS scroll-snap, JS не потрібен
-  if (window.matchMedia('(max-width: 767px)').matches) return;
-
   const wrapper = document.querySelector('.js-services-wrapper');
   const section = document.querySelector('.js-services');
   const fan     = document.querySelector('.js-fan');
