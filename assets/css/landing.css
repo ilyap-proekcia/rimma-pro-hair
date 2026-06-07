@@ -668,25 +668,27 @@
 
   /* Фото: ширше за екран (646px @ 390px), центроване */
   .fears__photo {
-    width: min(646px, 165.6vw);
-    height: auto;
-    aspect-ratio: 646 / 272;
+    width: min(720px, 184.6vw);      /* ширше — дівчина крупніше */
+    height: clamp(340px, 95vw, 420px); /* вища — більше фігури */
     object-fit: cover;
     object-position: center top;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    margin-bottom: -60px;            /* заходить поверх першої картки */
+    z-index: 1;
   }
 
-  /* Картки: вертикальна колонка під фото */
+  /* Картки: вертикальна колонка під фото, з місцем для overlap */
   .fears__cards {
     position: static;
     transform: none;
     width: 100%;
     flex-direction: column;
-    padding: 0 20px 32px;
+    padding: 60px 20px 32px;   /* top = компенсація margin-bottom фото */
     gap: 14px;
     background: #F4EFEB;
+    z-index: 0;
   }
 
   /* Картка: вертикальна (іконка зверху, текст знизу) */
