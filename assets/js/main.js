@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStepsParallax();
   initFooterParallax();
   initDebugPanel();
+  initMapDebugPanel();
 });
 
 /* ============================================================
@@ -215,6 +216,93 @@ function initFooterParallax() {
   }, { passive: true });
 
   update();
+}
+
+/* ============================================================
+   MAP DEBUG PANEL — Ctrl+Shift+M  або  ?mapDebug в URL
+   Керує CSS-змінними карти (тільки в @media ≤767px — ПК не зачіпає).
+   Показує значення для копіювання у фінальний CSS.
+   ============================================================ */
+function initMapDebugPanel() {
+  const sliders = [
+    { id: 'mscale', label: 'Масштаб',  unit: '',  key: '--map-mob-scale', min: 0.5,  max: 4.0,  step: 0.05, val: 1.2  },
+    { id: 'mtx',    label: 'Зсув X',   unit: '%', key: '--map-mob-tx',    min: -100, max: 100,  step: 1,    val: 0    },
+    { id: 'mty',    label: 'Зсув Y',   unit: '%', key: '--map-mob-ty',    min: -100, max: 100,  step: 1,    val: 0    },
+  ];
+
+  /* Застосовуємо початкові значення */
+  function applyVar(key, val, unit) {
+    document.documentElement.style.setProperty(key, unit ? `${val}${unit}` : `${val}`);
+  }
+  sliders.forEach(s => applyVar(s.key, s.val, s.unit));
+
+  const isDebug = new URLSearchParams(location.search).has('mapDebug');
+
+  const panel = document.createElement('div');
+  panel.id = 'map-debug';
+  panel.innerHTML =
+    `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+       <p style="font-weight:700;font-size:13px;margin:0;color:#ffd6a5">🗺 Карта (моб)</p>
+       <button id="map-debug-close" style="background:none;border:none;color:#888;font-size:18px;cursor:pointer;line-height:1;padding:0">×</button>
+     </div>` +
+    sliders.map(s =>
+      `<label style="display:block;margin-bottom:12px;line-height:1.4">
+        ${s.label}: <span id="dbgm-v-${s.id}" style="color:#ffd6a5;font-weight:600">${s.val}${s.unit}</span>
+        <input type="range" id="dbgm-${s.id}" min="${s.min}" max="${s.max}"
+          value="${s.val}" step="${s.step}"
+          style="display:block;width:100%;margin-top:4px;accent-color:#ffd6a5;cursor:pointer">
+      </label>`
+    ).join('') +
+    `<div style="margin-top:10px;padding:8px;background:rgba(255,255,255,0.08);border-radius:6px">
+       <p style="margin:0 0 4px;font-size:10px;color:#888">Скопіюй у фінальний CSS:</p>
+       <pre id="map-debug-out" style="margin:0;font-size:10px;color:#ffd6a5;white-space:pre-wrap;word-break:break-all"></pre>
+     </div>
+     <p style="margin:8px 0 0;font-size:10px;color:#555">Ctrl+Shift+M — закрити</p>`;
+
+  Object.assign(panel.style, {
+    position: 'fixed', bottom: '20px', left: '20px', zIndex: '99999',
+    background: 'rgba(10,10,10,0.93)', color: '#ccc',
+    padding: '18px 20px', borderRadius: '14px',
+    fontFamily: 'monospace', fontSize: '12px', width: '260px',
+    display: isDebug ? 'block' : 'none',
+    backdropFilter: 'blur(16px)', boxShadow: '0 6px 32px rgba(0,0,0,0.55)',
+    lineHeight: '1.5', userSelect: 'none', touchAction: 'none',
+  });
+
+  document.body.appendChild(panel);
+
+  /* Закрити кнопкою × */
+  document.getElementById('map-debug-close').addEventListener('click', () => {
+    panel.style.display = 'none';
+  });
+
+  /* Toggle Ctrl+Shift+M */
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+  });
+
+  function updateOutput() {
+    const scale = document.getElementById('dbgm-mscale').value;
+    const tx    = document.getElementById('dbgm-mtx').value;
+    const ty    = document.getElementById('dbgm-mty').value;
+    document.getElementById('map-debug-out').textContent =
+      `--map-mob-scale: ${scale};\n--map-mob-tx: ${tx}%;\n--map-mob-ty: ${ty}%;`;
+  }
+
+  sliders.forEach(({ id, unit, key }) => {
+    const input = document.getElementById(`dbgm-${id}`);
+    const span  = document.getElementById(`dbgm-v-${id}`);
+    input.addEventListener('input', () => {
+      const v = parseFloat(input.value);
+      span.textContent = `${v}${unit}`;
+      applyVar(key, v, unit);
+      updateOutput();
+    });
+  });
+
+  updateOutput();
 }
 
 /* ============================================================

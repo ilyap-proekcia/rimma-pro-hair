@@ -2025,14 +2025,20 @@
     border-radius: 0 0 8.21vw 8.21vw; /* 32px */
   }
 
-  /* Карта: розтягуємо на всю висоту секції щоб закрити весь фон */
+  /* Карта: масштаб і позиція керуються через CSS-змінні з JS debug-панелі.
+     --map-mob-scale: множник масштабу (>1 = збільшення)
+     --map-mob-tx: горизонтальний зсув (% від власної ширини)
+     --map-mob-ty: вертикальний зсув (% від власної висоти)           */
   .contact__map img {
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
+    transform-origin: center center;
+    transform: scale(var(--map-mob-scale, 1.2))
+               translate(var(--map-mob-tx, 0%), var(--map-mob-ty, 0%));
   }
 
   /* Gradient overlay: прозора зона у верхній частині де попап */
