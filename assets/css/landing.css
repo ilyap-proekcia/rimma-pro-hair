@@ -1552,14 +1552,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: clamp(80px, 30.8vw, 130px) 20px 20px;  /* 120px @ 390px */
+    padding: 120px 20px 20px;  /* фіксовані 120px — однаково на всіх телефонах */
     height: auto;
     min-height: 0;
   }
 
-  /* Заголовок: 40px, ліворуч */
+  /* Заголовок: 40px фіксовано — однаково на всіх телефонах */
   .steps__title {
-    font-size: clamp(36px, 10.3vw, 44px);  /* 40px @ 390px */
+    font-size: 40px;
     line-height: 1;
     letter-spacing: -0.96px;
     max-width: 55%;
@@ -1582,7 +1582,6 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    margin-left: -8px;  /* -8.56px з Figma */
   }
 
   /* Картки */
@@ -1591,14 +1590,15 @@
     gap: 14px;
   }
 
-  /* Картка: центрований лейаут, фіксована висота */
+  /* Картка: центрований лейаут, явний gap між бейджем і тілом */
   .step-card {
-    min-height: clamp(160px, 46.2vw, 190px); /* 180px @ 390px */
+    min-height: 180px;
     padding: 20px;
     border-radius: 16px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 24px;  /* явний відступ між «Крок N» і заголовком */
   }
 
   /* Бейдж: по центру */
