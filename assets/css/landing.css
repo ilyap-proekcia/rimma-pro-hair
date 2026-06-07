@@ -666,29 +666,37 @@
     max-width: 100%;
   }
 
-  /* Фото: ширше за екран (646px @ 390px), центроване */
+  /* Заголовок під фото (фото перекриває його знизу) */
+  .fears__title {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Фото: перекриває заголовок зверху + картки перекривають фото */
   .fears__photo {
-    width: min(720px, 184.6vw);      /* ширше — дівчина крупніше */
-    height: clamp(340px, 95vw, 420px); /* вища — більше фігури */
+    width: min(720px, 184.6vw);
+    height: clamp(400px, 108vw, 480px);  /* вища — більше дівчини */
     object-fit: cover;
     object-position: center top;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: -60px;            /* заходить поверх першої картки */
-    z-index: 1;
+    margin-top: -50px;     /* заходить на заголовок зверху */
+    margin-bottom: 0;
+    z-index: 2;            /* над заголовком */
   }
 
-  /* Картки: вертикальна колонка під фото, з місцем для overlap */
+  /* Картки: над фото, зміщені вгору */
   .fears__cards {
-    position: static;
+    position: relative;
     transform: none;
     width: 100%;
     flex-direction: column;
-    padding: 60px 20px 32px;   /* top = компенсація margin-bottom фото */
+    padding: 20px 20px 32px;
     gap: 14px;
-    background: #F4EFEB;
-    z-index: 0;
+    background: transparent;
+    z-index: 3;            /* над фото */
+    margin-top: -60px;     /* заходять на фото зверху */
   }
 
   /* Картка: вертикальна (іконка зверху, текст знизу) */
@@ -701,6 +709,7 @@
     border-radius: 18px;
     box-shadow: none;
     text-align: center;
+    background: #ffffff;  /* явний білий — щоб перекривати фото чисто */
   }
 
   /* Іконка: 80×80px, межа 1px */
