@@ -642,36 +642,98 @@
   color: rgba(49, 49, 49, 0.8);
 }
 
-/* Mobile — картки під фото, вертикально */
+/* ---- FEARS MOBILE (≤767px) — Figma mobile design ---- */
 @media (max-width: 767px) {
+  /* Заокруглення секції */
+  .fears {
+    border-radius: 0 0 32px 32px;
+  }
+
+  /* Еліпс: позиція з Figma */
+  .fears__ellipse {
+    width: min(326px, 83.7vw);
+    height: calc(min(326px, 83.7vw) * 116.15 / 326.4);
+    left: clamp(16px, 6.3vw, 28px);
+    top: clamp(110px, 33.6vw, 145px);
+  }
+
+  /* Заголовок: 40px */
+  .fears__title {
+    font-size: clamp(36px, 10.3vw, 44px);   /* 40px @ 390px */
+    line-height: 1;
+    letter-spacing: -0.936px;
+    padding: clamp(24px, 8.1vw, 36px) 20px clamp(8px, 3vw, 14px);
+    max-width: 100%;
+  }
+
+  /* Фото: ширше за екран (646px @ 390px), центроване */
+  .fears__photo {
+    width: min(646px, 165.6vw);
+    height: auto;
+    aspect-ratio: 646 / 272;
+    object-fit: cover;
+    object-position: center top;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Картки: вертикальна колонка під фото */
   .fears__cards {
     position: static;
     transform: none;
     width: 100%;
     flex-direction: column;
-    padding: clamp(16px, 5vw, 30px);
-    gap: 12px;
+    padding: 0 20px 32px;
+    gap: 14px;
     background: #F4EFEB;
-    padding-bottom: clamp(30px, 6vw, 60px);
   }
 
+  /* Картка: вертикальна (іконка зверху, текст знизу) */
   .fear-card {
     min-height: 0;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: clamp(14px, 4vw, 20px);
-    padding: clamp(16px, 4vw, 24px);
-    text-align: left;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: none;
+    text-align: center;
   }
 
+  /* Іконка: 80×80px, межа 1px */
   .fear-card__icon {
+    width: clamp(72px, 20.5vw, 84px);   /* 80px @ 390px */
+    height: clamp(72px, 20.5vw, 84px);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
   }
 
+  /* SVG всередині іконки: 45×45px */
+  .fear-card__icon svg {
+    width: clamp(40px, 11.5vw, 48px);   /* 45px @ 390px */
+    height: clamp(40px, 11.5vw, 48px);
+  }
+
+  /* Текст — по центру */
   .fear-card__text {
     margin-top: 0;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
+  }
+
+  /* Заголовок картки: 16.4px */
+  .fear-card__title {
+    font-size: clamp(14px, 4.2vw, 18px);  /* 16.4px @ 390px */
+    line-height: 1.22;
+    letter-spacing: -0.491px;
+  }
+
+  /* Опис картки: 13.7px */
+  .fear-card__desc {
+    font-size: clamp(12px, 3.5vw, 15px);  /* 13.7px @ 390px */
+    line-height: 1.46;
   }
 }
 
@@ -1643,36 +1705,7 @@
   }
 }
 
-/* ---- FEARS: картки — більше повітря і зазор між ними ---- */
-@media (max-width: 767px) {
-  .fears__title {
-    font-size: clamp(28px, 8vw, 48px);
-    padding-top: clamp(32px, 8vw, 52px);
-    padding-bottom: clamp(12px, 3vw, 20px);
-  }
-  .fears__cards {
-    gap: 14px;           /* було 12px — трохи більше дихання */
-    padding: clamp(20px, 5.5vw, 28px);
-    padding-bottom: clamp(36px, 9vw, 56px);
-  }
-  .fear-card {
-    padding: clamp(18px, 5vw, 24px);
-    gap: clamp(16px, 4.5vw, 20px);
-    border-radius: clamp(18px, 4.5vw, 24px);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06); /* легка тінь — картка «плаває» */
-  }
-  .fear-card__icon {
-    width: clamp(44px, 12vw, 52px);
-    height: clamp(44px, 12vw, 52px);
-  }
-  .fear-card__title {
-    font-size: clamp(15px, 4.2vw, 19px);
-  }
-  .fear-card__desc {
-    font-size: clamp(13px, 3.5vw, 15px);
-    line-height: 1.45;
-  }
-}
+/* FEARS mobile — see main block above (≤767px) */
 
 /* ---- STEPS: вертикальна розкладка — більше повітря між кроками ---- */
 @media (max-width: 979px) {
