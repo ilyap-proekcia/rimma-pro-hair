@@ -681,7 +681,7 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: -50px;     /* заходить на заголовок зверху */
+    margin-top: -30px;     /* заходить на заголовок зверху */
     margin-bottom: 0;
     z-index: 2;            /* над заголовком */
   }
@@ -689,14 +689,16 @@
   /* Картки: над фото, зміщені вгору */
   .fears__cards {
     position: relative;
+    left: auto;            /* скидаємо left: 50% з десктопу */
+    bottom: auto;
     transform: none;
     width: 100%;
     flex-direction: column;
     padding: 20px 20px 32px;
     gap: 14px;
     background: transparent;
-    z-index: 3;            /* над фото */
-    margin-top: -60px;     /* заходять на фото зверху */
+    z-index: 3;
+    margin-top: -60px;
   }
 
   /* Картка: вертикальна (іконка зверху, текст знизу) */
