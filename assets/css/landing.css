@@ -2036,9 +2036,9 @@
   }
   .contact__map img {
     position: absolute;
-    width: var(--map-mob-w, 280vw);
-    height: var(--map-mob-h, 220vw);
-    left: var(--map-mob-x, -90vw);
+    width: var(--map-mob-w, 350vw);
+    height: var(--map-mob-h, 240vw);
+    left: var(--map-mob-x, -125vw);
     top: var(--map-mob-y, -20vw);
     object-fit: cover;
     transform: none;

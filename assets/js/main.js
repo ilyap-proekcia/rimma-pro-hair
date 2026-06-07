@@ -224,36 +224,45 @@ function initFooterParallax() {
    Показує значення для копіювання у фінальний CSS.
    ============================================================ */
 function initMapDebugPanel() {
-  const sliders = [
-    { id: 'mw', label: 'Ширина',  unit: 'vw', key: '--map-mob-w', min: 100, max: 600, step: 5,  val: 280 },
-    { id: 'mh', label: 'Висота',  unit: 'vw', key: '--map-mob-h', min: 100, max: 500, step: 5,  val: 220 },
-    { id: 'mx', label: 'Зсув X',  unit: 'vw', key: '--map-mob-x', min: -400, max: 100, step: 2, val: -90 },
-    { id: 'my', label: 'Зсув Y',  unit: 'vw', key: '--map-mob-y', min: -200, max: 100, step: 2, val: -20 },
-  ];
+  /* Дефолтні значення */
+  const DEF = { w: 350, h: 240, x: -125, y: -20 };
 
-  /* Застосовуємо початкові значення */
-  function applyVar(key, val, unit) {
-    document.documentElement.style.setProperty(key, unit ? `${val}${unit}` : `${val}`);
+  /* Застосовуємо CSS-змінні */
+  function applyVar(key, val) {
+    document.documentElement.style.setProperty(key, `${val}vw`);
   }
-  sliders.forEach(s => applyVar(s.key, s.val, s.unit));
+  applyVar('--map-mob-w', DEF.w);
+  applyVar('--map-mob-h', DEF.h);
+  applyVar('--map-mob-x', DEF.x);
+  applyVar('--map-mob-y', DEF.y);
 
   const isDebug = new URLSearchParams(location.search).has('mapDebug');
 
   const panel = document.createElement('div');
   panel.id = 'map-debug';
+
+  /* Безпечний діапазон X: left ≤ 0, left + width ≥ 100vw
+     Тобто: x_min = -(w - 100), x_max = 0                    */
+  function safeXMin(w) { return -(w - 100); }
+
+  function makeSlider(id, label, min, max, val, step) {
+    return `<label style="display:block;margin-bottom:12px;line-height:1.4">
+      ${label}: <span id="dbgm-v-${id}" style="color:#ffd6a5;font-weight:600">${val}vw</span>
+      <input type="range" id="dbgm-${id}" min="${min}" max="${max}"
+        value="${val}" step="${step}"
+        style="display:block;width:100%;margin-top:4px;accent-color:#ffd6a5;cursor:pointer">
+    </label>`;
+  }
+
   panel.innerHTML =
     `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
        <p style="font-weight:700;font-size:13px;margin:0;color:#ffd6a5">🗺 Карта (моб)</p>
        <button id="map-debug-close" style="background:none;border:none;color:#888;font-size:18px;cursor:pointer;line-height:1;padding:0">×</button>
      </div>` +
-    sliders.map(s =>
-      `<label style="display:block;margin-bottom:12px;line-height:1.4">
-        ${s.label}: <span id="dbgm-v-${s.id}" style="color:#ffd6a5;font-weight:600">${s.val}${s.unit}</span>
-        <input type="range" id="dbgm-${s.id}" min="${s.min}" max="${s.max}"
-          value="${s.val}" step="${s.step}"
-          style="display:block;width:100%;margin-top:4px;accent-color:#ffd6a5;cursor:pointer">
-      </label>`
-    ).join('') +
+    makeSlider('mw', 'Ширина',  100,  600,  DEF.w, 5) +
+    makeSlider('mh', 'Висота',  100,  500,  DEF.h, 5) +
+    makeSlider('mx', 'Зсув X',  safeXMin(DEF.w), 0, DEF.x, 2) +
+    makeSlider('my', 'Зсув Y',  -200, 100,  DEF.y, 2) +
     `<div style="margin-top:10px;padding:8px;background:rgba(255,255,255,0.08);border-radius:6px">
        <p style="margin:0 0 4px;font-size:10px;color:#888">Скопіюй у фінальний CSS:</p>
        <pre id="map-debug-out" style="margin:0;font-size:10px;color:#ffd6a5;white-space:pre-wrap;word-break:break-all"></pre>
@@ -272,12 +281,10 @@ function initMapDebugPanel() {
 
   document.body.appendChild(panel);
 
-  /* Закрити кнопкою × */
   document.getElementById('map-debug-close').addEventListener('click', () => {
     panel.style.display = 'none';
   });
 
-  /* Toggle Ctrl+Shift+M */
   document.addEventListener('keydown', e => {
     if (e.ctrlKey && e.shiftKey && e.key === 'M') {
       panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
@@ -293,13 +300,40 @@ function initMapDebugPanel() {
       `--map-mob-w: ${w}vw;\n--map-mob-h: ${h}vw;\n--map-mob-x: ${x}vw;\n--map-mob-y: ${y}vw;`;
   }
 
-  sliders.forEach(({ id, unit, key }) => {
+  const wInput = document.getElementById('dbgm-mw');
+  const xInput = document.getElementById('dbgm-mx');
+
+  /* При зміні ширини — оновлюємо безпечний мін X та підрізаємо значення */
+  wInput.addEventListener('input', () => {
+    const w = parseFloat(wInput.value);
+    document.getElementById('dbgm-v-mw').textContent = `${w}vw`;
+    applyVar('--map-mob-w', w);
+    const newMin = safeXMin(w);
+    xInput.min = newMin;
+    if (parseFloat(xInput.value) < newMin) {
+      xInput.value = newMin;
+      document.getElementById('dbgm-v-mx').textContent = `${newMin}vw`;
+      applyVar('--map-mob-x', newMin);
+    }
+    updateOutput();
+  });
+
+  /* Зсув X: max завжди 0 (щоб ліво секції не оголювалось) */
+  xInput.addEventListener('input', () => {
+    const v = parseFloat(xInput.value);
+    document.getElementById('dbgm-v-mx').textContent = `${v}vw`;
+    applyVar('--map-mob-x', v);
+    updateOutput();
+  });
+
+  /* Висота і Y — стандартні слайдери */
+  ['mh', 'my'].forEach(id => {
     const input = document.getElementById(`dbgm-${id}`);
-    const span  = document.getElementById(`dbgm-v-${id}`);
+    const key = id === 'mh' ? '--map-mob-h' : '--map-mob-y';
     input.addEventListener('input', () => {
       const v = parseFloat(input.value);
-      span.textContent = `${v}${unit}`;
-      applyVar(key, v, unit);
+      document.getElementById(`dbgm-v-${id}`).textContent = `${v}vw`;
+      applyVar(key, v);
       updateOutput();
     });
   });
