@@ -2036,9 +2036,16 @@
   }
 
   /* Gradient overlay: прозора зона у верхній частині де попап */
-  /* Gradient overlay прибрано на мобілці — карта без перекриття */
+  /* Gradient: тільки зверху і знизу, по горизонталі прозорий */
   .contact__map::after {
-    display: none;
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      #F4EFEB 0%,
+      rgba(244, 239, 235, 0) 20%,
+      rgba(244, 239, 235, 0) 80%,
+      #F4EFEB 100%
+    );
   }
 
   /* Попап */
