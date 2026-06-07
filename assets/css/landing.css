@@ -1947,8 +1947,7 @@
   /* Фото: абсолютне, справа, виходить за правий край секції */
   .about__photo {
     position: absolute;
-    left: 32.05vw;      /* 125px */
-    right: -32.05vw;    /* -125px (виходить за viewport) */
+    right: -16.05vw;    /* -125px (виходить за viewport) */
     top: 31.03vw;       /* 121px */
     bottom: -7.18vw;    /* -28px (заходить під .about__top) */
     width: auto;
@@ -2017,32 +2016,82 @@
   }
 }
 
-/* ---- CONTACT: попап повністю видимий, кнопки зручні ---- */
+/* ---- CONTACT MOBILE (≤767px) — Figma design ---- */
 @media (max-width: 767px) {
+  /* Секція: padding-top = позиція телефону від верху секції (559.52px) */
   .contact {
-    padding-top: 44vw;
-    padding-bottom: 10vw;
+    padding-top: 143.47vw;   /* 559.52px */
+    padding-bottom: 12.84vw; /* 50px */
+    border-radius: 0 0 8.21vw 8.21vw; /* 32px */
   }
+
+  /* Карта: Figma (1815.64 × 1013.32px, left -1051px, top -83px) */
+  .contact__map img {
+    width: 465.55vw;   /* 1815.64px */
+    left: -269.49vw;  /* -1051px */
+    top: -21.28vw;    /* -83px */
+  }
+
+  /* Gradient overlay: з Figma */
+  .contact__map::after {
+    background: radial-gradient(
+      43.23% 74.17% at 50% 46.06%,
+      rgba(244, 239, 235, 0) 0%,
+      #F4EFEB 100%
+    );
+  }
+
+  /* Попап */
   .contact__popup {
-    top: 34vw;
-    width: 88vw;
+    top: 55.33vw;           /* 215.78px */
+    width: 87.18vw;         /* 340px */
+    padding: 6.15vw 3.59vw; /* 24px 14px */
+    gap: 4.1vw;             /* 16px */
+    border-radius: 3.08vw;  /* 12px */
   }
+
+  /* Адреса в попапі */
+  .contact__address {
+    font-size: 5.13vw;      /* 20px */
+    letter-spacing: -0.39px;
+    margin-bottom: 0;
+  }
+
+  /* Посилання на карту */
+  .contact__map-link {
+    font-size: 4.1vw;       /* 16px */
+  }
+
+  /* Телефон */
   .contact__phone {
-    font-size: 9.5vw;
-    margin-top: 7vw;
+    font-size: 9.51vw;      /* 37.1px */
+    letter-spacing: -1.111px;
+    margin-top: 0;
+    white-space: nowrap;
   }
+
+  /* Кнопки */
   .contact__actions {
-    gap: 3.59vw;
-    padding: 0 5.5vw;
-    margin-top: 6vw;
+    flex-direction: column;
+    padding: 0 5.5vw;       /* 21.45px */
+    gap: 3.59vw;            /* 14px */
+    margin-top: 6vw;        /* ~23px */
   }
+
   .contact__btn {
     width: 100%;
-    height: 17vw;
-    border: 2px solid rgba(50, 44, 43, 0.55);
-    border-radius: 100px;
-    font-size: 4.2vw;
+    height: 16.41vw;        /* 64px */
+    background: #fff;
+    border: none;
+    border-radius: 35.9vw;  /* pill */
+    font-size: 4.21vw;      /* 16.4px */
     gap: 2.56vw;
+    color: #000;
+  }
+
+  .contact__btn:hover {
+    background: #322C2B;
+    color: #fff;
   }
 }
 
