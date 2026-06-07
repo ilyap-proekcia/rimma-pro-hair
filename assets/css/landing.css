@@ -2025,20 +2025,23 @@
     border-radius: 0 0 8.21vw 8.21vw; /* 32px */
   }
 
-  /* Карта: масштаб і позиція керуються через CSS-змінні з JS debug-панелі.
-     --map-mob-scale: множник масштабу (>1 = збільшення)
-     --map-mob-tx: горизонтальний зсув (% від власної ширини)
-     --map-mob-ty: вертикальний зсув (% від власної висоти)           */
+  /* Карта: позиція і зум керуються через CSS-змінні з JS debug-панелі.
+     Підхід: явні width/height/left/top (не transform) — без обрізання.
+     --map-mob-w:  ширина зображення (vw). Менше = zoom in, більше = zoom out.
+     --map-mob-h:  висота зображення (vw).
+     --map-mob-x:  горизонтальний зсув (vw). Від'ємне — зсув вліво.
+     --map-mob-y:  вертикальний зсув (vw). Від'ємне — зсув вгору.          */
+  .contact__map {
+    overflow: hidden; /* обрізаємо карту в межах контейнера, не трансформом */
+  }
   .contact__map img {
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    position: absolute;
+    width: var(--map-mob-w, 280vw);
+    height: var(--map-mob-h, 220vw);
+    left: var(--map-mob-x, -90vw);
+    top: var(--map-mob-y, -20vw);
     object-fit: cover;
-    object-position: center center;
-    transform-origin: center center;
-    transform: scale(var(--map-mob-scale, 1.2))
-               translate(var(--map-mob-tx, 0%), var(--map-mob-ty, 0%));
+    transform: none;
   }
 
   /* Gradient overlay: прозора зона у верхній частині де попап */
@@ -2068,6 +2071,7 @@
     font-size: 5.13vw;      /* 20px */
     letter-spacing: -0.39px;
     margin-bottom: 0;
+    padding-bottom: 3vw;
   }
 
   /* Посилання на карту */

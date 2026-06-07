@@ -225,9 +225,10 @@ function initFooterParallax() {
    ============================================================ */
 function initMapDebugPanel() {
   const sliders = [
-    { id: 'mscale', label: 'Масштаб',  unit: '',  key: '--map-mob-scale', min: 0.5,  max: 4.0,  step: 0.05, val: 1.2  },
-    { id: 'mtx',    label: 'Зсув X',   unit: '%', key: '--map-mob-tx',    min: -100, max: 100,  step: 1,    val: 0    },
-    { id: 'mty',    label: 'Зсув Y',   unit: '%', key: '--map-mob-ty',    min: -100, max: 100,  step: 1,    val: 0    },
+    { id: 'mw', label: 'Ширина',  unit: 'vw', key: '--map-mob-w', min: 100, max: 600, step: 5,  val: 280 },
+    { id: 'mh', label: 'Висота',  unit: 'vw', key: '--map-mob-h', min: 100, max: 500, step: 5,  val: 220 },
+    { id: 'mx', label: 'Зсув X',  unit: 'vw', key: '--map-mob-x', min: -400, max: 100, step: 2, val: -90 },
+    { id: 'my', label: 'Зсув Y',  unit: 'vw', key: '--map-mob-y', min: -200, max: 100, step: 2, val: -20 },
   ];
 
   /* Застосовуємо початкові значення */
@@ -284,11 +285,12 @@ function initMapDebugPanel() {
   });
 
   function updateOutput() {
-    const scale = document.getElementById('dbgm-mscale').value;
-    const tx    = document.getElementById('dbgm-mtx').value;
-    const ty    = document.getElementById('dbgm-mty').value;
+    const w = document.getElementById('dbgm-mw').value;
+    const h = document.getElementById('dbgm-mh').value;
+    const x = document.getElementById('dbgm-mx').value;
+    const y = document.getElementById('dbgm-my').value;
     document.getElementById('map-debug-out').textContent =
-      `--map-mob-scale: ${scale};\n--map-mob-tx: ${tx}%;\n--map-mob-ty: ${ty}%;`;
+      `--map-mob-w: ${w}vw;\n--map-mob-h: ${h}vw;\n--map-mob-x: ${x}vw;\n--map-mob-y: ${y}vw;`;
   }
 
   sliders.forEach(({ id, unit, key }) => {
