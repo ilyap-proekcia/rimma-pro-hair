@@ -212,25 +212,86 @@
 
 .btn--outline:hover { background: rgba(255, 255, 255, 0.1); }
 
-/* ---- Mobile hero ---- */
+/* Бургер — прихований на десктопі */
+.header__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
 
+/* ---- Mobile Hero (≤767px) ---- */
 @media (max-width: 767px) {
+
+  /* Header */
+  .header {
+    height: 48px;
+    padding: 0 20px;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .header__left { gap: 0; }
+  .header__tagline { display: none; }
+  .header__logo { height: 24px; }
+
   .header__address { display: none; }
 
+  .header__phone {
+    display: block;
+    font-size: 16px;
+    margin-left: 0;
+  }
+
+  .header__cta { display: none; }
+
+  .header__burger { display: flex; }
+
+  /* Hero content */
+  .hero__content {
+    padding: 0 20px;
+    gap: 24px;
+  }
+
+  /* H1 */
+  .hero__title {
+    font-size: clamp(28px, 8.2vw, 36px);
+    line-height: 1;
+    letter-spacing: -1.03px;
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* Описание */
+  .hero__desc {
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 21px;
+    max-width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+  }
+
+  /* Кнопки */
   .hero__actions {
     flex-direction: column;
+    gap: 12px;
     width: 100%;
   }
 
   .btn--white,
   .btn--outline {
     width: 100%;
-    max-width: 380px;
+    max-width: 100%;
+    height: clamp(56px, 16.4vw, 68px);
+    font-size: clamp(13px, 3.8vw, 16px);
+    padding: 16px 24px;
   }
-}
-
-@media (max-width: 480px) {
-  .header__phone { display: none; }
 }
 
 /* ============ SERVICES ============ */
