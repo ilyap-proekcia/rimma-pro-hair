@@ -503,18 +503,19 @@
     line-height: 1.2;
   }
 
-  /* CTA: фіксована позиція замість JS-змінної, ширина 350px */
+  /* CTA: фіксована позиція замість JS-змінної */
   .services__actions {
     top: clamp(440px, 128vw, 560px);   /* 500px @ 390px */
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: min(350px, 89.7vw);
-    padding: 10px 0 16px;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: auto;
+    padding: 10px 20px 16px;
   }
 
   .services__actions .btn {
     width: 100%;
+    max-width: min(350px, 89.7vw);
     height: clamp(56px, 16.4vw, 68px); /* 64px @ 390px */
     font-size: clamp(13px, 3.8vw, 16px);
     padding: 16px 20px;
