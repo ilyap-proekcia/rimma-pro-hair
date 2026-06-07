@@ -1545,6 +1545,10 @@
     padding-bottom: 12.31vw;
   }
 
+  .steps__bottom-space {
+    display: none;
+  }
+
   /* Ліва панель */
   .steps__left {
     flex-direction: row;
@@ -1812,7 +1816,7 @@
 /* ---- STEPS: вертикальна розкладка — більше повітря між кроками ---- */
 @media (max-width: 979px) {
   .steps__left {
-    padding: clamp(52px, 12vw, 100px) clamp(20px, 5.5vw, 32px) clamp(20px, 5vw, 36px);
+    padding: clamp(52px, 32vw, 100px) clamp(20px, 5.5vw, 32px) clamp(20px, 5vw, 36px);
   }
   .steps__title {
     font-size: clamp(32px, 7.5vw, 72px);
