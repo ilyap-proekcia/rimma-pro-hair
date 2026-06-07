@@ -1887,22 +1887,133 @@
   .about__badge-text { font-size: clamp(7px, 1.4vw, 10px); }
 }
 
-/* ---- ABOUT: CTA-картка ---- */
+/* ---- ABOUT MOBILE (≤767px) — Figma mobile design ---- */
 @media (max-width: 767px) {
-  .about__cta {
-    margin: 0 4vw;
-    padding: 8vw 6vw 9vw;
+
+  /* Секція: відступ зверху = 80px / 390 */
+  .about {
+    padding-top: 20.51vw;
+    padding-bottom: 0;
   }
+
+  /* Верхня зона: фіксована висота 476px, всі діти — абсолютні */
+  .about__top {
+    position: relative;
+    height: 122.05vw;   /* 476px */
+    padding: 0;
+  }
+
+  /* Еліпс: Figma coords */
+  .about__ellipse {
+    width: 189.57vw;    /* 739.34px */
+    height: calc(189.57vw * 263.1 / 739.34);
+    left: -46.67vw;     /* -182px */
+    top: 21.26vw;       /* 82.91px */
+    transform: rotate(9.49deg);
+  }
+
+  /* Заголовок: абсолютне, лівий верхній кут */
+  .about__title {
+    position: absolute;
+    left: 5.13vw;       /* 20px */
+    top: 0;
+    width: 89.23vw;     /* 348px */
+    max-width: none;
+    font-size: 7.18vw;  /* 28px */
+    line-height: 1;
+    letter-spacing: -0.819px;
+    padding-top: 0;
+    margin-right: 0;
+  }
+
+  /* Автор: абсолютне, під заголовком */
+  .about__author {
+    position: absolute;
+    left: 5.13vw;       /* 20px */
+    top: 39.49vw;       /* 154px */
+    margin-top: 0;
+    gap: 2.05vw;        /* 8px */
+  }
+
+  .about__name {
+    font-size: 5.13vw;  /* 20px */
+    letter-spacing: -0.48px;
+  }
+
+  .about__role {
+    font-size: 4.1vw;   /* 16px */
+  }
+
+  /* Фото: абсолютне, справа, виходить за правий край секції */
+  .about__photo {
+    position: absolute;
+    left: 32.05vw;      /* 125px */
+    right: -32.05vw;    /* -125px (виходить за viewport) */
+    top: 31.03vw;       /* 121px */
+    bottom: -7.18vw;    /* -28px (заходить під .about__top) */
+    width: auto;
+    height: auto;
+    margin-left: 0;
+    overflow: visible;
+  }
+
+  .about__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* Бейдж: лівий нижній кут */
+  .about__badge {
+    position: absolute;
+    left: 3.59vw;       /* 14px = 390-228-148 */
+    top: 73.31vw;       /* 285.91px */
+    right: auto;
+    width: 37.95vw;     /* 148px */
+    height: 37.95vw;
+    padding: 0 0 3.08vw; /* 12px padding-bottom — текст зміщується вниз */
+  }
+
+  .about__badge-num {
+    font-size: 12.31vw; /* 48px */
+  }
+
+  .about__badge-text {
+    font-size: 3.08vw;  /* 12px */
+    max-width: 28.72vw; /* 112px */
+  }
+
+  /* CTA-картка */
+  .about__cta {
+    margin: 0 4vw;           /* 15.6px */
+    border-radius: 5.13vw;   /* 20px */
+    padding: 8.21vw 6vw 9.23vw; /* 32px 23.4px 36px */
+  }
+
   .about__cta-title {
-    font-size: 7.5vw;
-    margin-bottom: 6.5vw;
+    font-size: 7.51vw;       /* 29.3px */
+    line-height: 1.09;
+    letter-spacing: -0.877px;
+    margin-bottom: 5.13vw;
     max-width: 100%;
   }
+
   .about__cta-btn {
+    background: #322C2B;
+    color: #fff;
+    border: 1px solid #322C2B;
     width: 100%;
-    max-width: 87.18vw;
-    height: 14vw;
-    font-size: 4vw;
+    max-width: 80vw;         /* 312px */
+    height: 16.41vw;         /* 64px */
+    font-size: 4vw;          /* 15.6px */
+  }
+
+  .about__cta-btn:hover {
+    background: transparent;
+    color: #322C2B;
   }
 }
 
