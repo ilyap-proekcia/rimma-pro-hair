@@ -1,0 +1,2121 @@
+/* ============================================
+   LANDING — стили секций
+   ============================================ */
+
+/* ============ HERO ============ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 580px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Venetian blind — hero page-load animation */
+.hero__blinds {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  pointer-events: none;
+}
+
+.hero__blind {
+  flex: 1;
+  background: #1a1a1a;
+  transform-origin: top center;
+}
+
+@keyframes blindReveal {
+  0%   { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+/* ---- Header ---- */
+
+.header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.5vw, 28px);
+  padding: clamp(20px, 2.5vw, 44px) clamp(20px, 3.17vw, 61px);
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 20px);
+  flex-shrink: 0;
+}
+
+.header__logo {
+  display: block;
+  height: clamp(26px, 2.24vw, 43px);
+  width: auto;
+}
+
+.header__tagline {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.94vw, 18px);
+  color: #fff;
+  line-height: 1.22;
+}
+
+.header__address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.94vw, 18px);
+  color: #fff;
+  line-height: 1.22;
+}
+
+.header__address-icon {
+  width: clamp(20px, 2.5vw, 48px);
+  height: clamp(20px, 2.5vw, 48px);
+  flex-shrink: 0;
+}
+
+.header__phone {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.25vw, 24px);
+  color: #fff;
+  margin-left: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.header__phone:hover { opacity: 0.75; }
+
+/* Кнопка з нахиленим овалом */
+.header__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(100px, 11.2vw, 216px);
+  height: clamp(40px, 4.09vw, 78px);
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.25vw, 24px);
+  color: #fff;
+  flex-shrink: 0;
+  transition: opacity 0.3s var(--ease);
+}
+
+.header__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  transform: rotate(6.16deg);
+}
+
+.header__cta:hover { opacity: 0.75; }
+
+/* ---- Hero content ---- */
+
+.hero__content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(20px, 4vw, 60px) clamp(20px, 3vw, 60px);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5.73vw, 110px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: clamp(300px, 78.6vw, 1510px);
+  margin-bottom: clamp(20px, 2.5vw, 48px);
+}
+
+.hero__desc {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.25vw, 24px);
+  line-height: 1.17;
+  color: #fff;
+  max-width: clamp(280px, 40.9vw, 786px);
+  margin-bottom: clamp(32px, 4.17vw, 80px);
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.46vw, 28px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 0.73vw, 14px) clamp(22px, 1.875vw, 36px);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.25vw, 24px);
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 140px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), opacity 0.3s var(--ease);
+  text-decoration: none;
+}
+
+.btn--white {
+  background: #fff;
+  color: #000;
+  border: 1px solid transparent;
+  min-width: clamp(180px, 19.7vw, 378px);
+  min-height: clamp(48px, 4.74vw, 91px);
+}
+
+.btn--white:hover { background: rgba(255, 255, 255, 0.88); }
+
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  min-width: clamp(180px, 20.1vw, 386px);
+  min-height: clamp(48px, 4.74vw, 91px);
+}
+
+.btn--outline:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* Бургер — прихований на десктопі */
+.header__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ---- Mobile Hero (≤767px) ---- */
+@media (max-width: 767px) {
+
+  /* Header */
+  .header {
+    height: 12.31vw;
+    padding: 0 5.13vw;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .header__left { gap: 0; }
+  .header__tagline { display: none; }
+  .header__logo { height: 6.15vw; }
+
+  .header__address { display: none; }
+
+  .header__phone {
+    display: block;
+    font-size: 4.1vw;
+    margin-left: 0;
+  }
+
+  .header__cta { display: none; }
+
+  .header__burger { display: flex; }
+
+  /* Hero content */
+  .hero__content {
+    padding: 0 5.13vw;
+  }
+
+  /* H1 */
+  .hero__title {
+    font-size: 8.2vw;
+    line-height: 1;
+    letter-spacing: -1.03px;
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  /* Описание */
+  .hero__desc {
+    font-size: 3.8vw;
+    line-height: 5.38vw;
+    max-width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 6.15vw;
+  }
+
+  /* Кнопки */
+  .hero__actions {
+    flex-direction: column;
+    gap: 3.08vw;
+    width: 100%;
+  }
+
+  .btn--white,
+  .btn--outline {
+    width: 100%;
+    max-width: 100%;
+    height: 16.4vw;
+    font-size: 3.8vw;
+    padding: 4.1vw 6.15vw;
+  }
+}
+
+/* ============ SERVICES ============ */
+
+/*
+  Принцип: .services-scroll-wrapper — висока обгортка.
+  .services — sticky, займає 100vh.
+  Скрол через обгортку → JS обертає fan-карусель.
+  Всі картки на одному місці (center), transform-origin нижче карток —
+  ротація природно розкриває «руку карт» як у дизайні.
+*/
+
+.services-scroll-wrapper {
+  /* Висота встановлюється JS-ом */
+}
+
+.services {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: clamp(700px, 55vw, 1100px);
+  background: #F4EFEB;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Декоративний еліпс */
+.services__ellipse {
+  position: absolute;
+  width: 164.9vw;
+  height: calc(164.9vw * 1152 / 3166);
+  top: clamp(300px, 29.8vw, 572px);
+  left: calc(50% - 82.45vw - 4.83vw);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  transform: rotate(6deg);
+  pointer-events: none;
+}
+
+/* Заголовок — поза sticky-секцією, скролиться природно */
+.services__title {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5.21vw, 100px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+  text-align: center;
+  padding: clamp(40px, 6.25vw, 120px) var(--layout-padding) clamp(24px, 3vw, 60px);
+  background: #F4EFEB;
+}
+
+/* Fan — область карток */
+.services__fan {
+  position: relative;
+  flex: 1;
+  overflow: visible;
+}
+
+/* ---- Картка ---- */
+
+.service-card {
+  position: absolute;
+  /*
+    Всі картки — в одній точці (ліво+верх картки = center).
+    transform-origin: 50% 300% — точка обертання далеко нижче картки.
+    JS задає rotate(Xdeg) — карти розкриваються як рука карт.
+  */
+  width: clamp(280px, 23.96vw, 460px);
+  height: clamp(335px, 28.65vw, 550px);
+  left: 50%;
+  top: clamp(0px, var(--fan-card-top-vw, 15vw), 134px);
+  margin-left: calc(clamp(280px, 23.96vw, 460px) / -2);
+  transform-origin: 50% var(--fan-origin-y, 300%);
+  transition: transform 0.12s ease-out, opacity 0.12s ease-out;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+/* Фото (стирчить вище картки) */
+.service-card__photo {
+  position: absolute;
+  width: clamp(160px, 15.73vw, 302px);
+  height: clamp(220px, 21.88vw, 420px);
+  top: clamp(-55px, -4.48vw, -86px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  object-fit: cover;
+}
+
+/* М'ятний прямокутник */
+.service-card__inner {
+  position: relative;
+  height: 100%;
+  background: #AEFFF7;
+  border-radius: clamp(12px, 1.04vw, 20px);
+  padding: clamp(14px, 1.67vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+/* Номер-бейдж */
+.service-card__num {
+  position: absolute;
+  top: clamp(14px, 1.67vw, 32px);
+  left: clamp(14px, 1.67vw, 32px);
+  width: clamp(30px, 2.5vw, 48px);
+  height: clamp(30px, 2.5vw, 48px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: clamp(13px, 1.04vw, 20px);
+  line-height: 1;
+  color: rgba(49, 49, 49, 0.8);
+}
+
+/* Текст */
+.service-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 0.83vw, 16px);
+  text-align: center;
+}
+
+.service-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 1.46vw, 28px);
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: -0.03em;
+  color: #313131;
+}
+
+.service-card__desc {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.83vw, 16px);
+  line-height: 1.4;
+  color: rgba(49, 49, 49, 0.8);
+}
+
+/* CTA під каруссю.
+   top встановлюється JS через --services-btn-top (card_top + 1.45*card_height + gap).
+   z-index: 25 > max z-index карток (20) → кнопка над картками, фон не потрібен.
+*/
+.services__actions {
+  position: absolute;
+  top: var(--services-btn-top, 750px);
+  left: 0;
+  right: 0;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  padding: clamp(10px, 1.25vw, 24px) 0 clamp(16px, 2vw, 40px);
+}
+
+/* ---- SERVICES MOBILE (≤767px) ---- */
+@media (max-width: 767px) {
+  .services__fan { overflow: visible; }
+  .services__ellipse { display: none; }
+
+  /* Заголовок: 40.2vw @ 390px */
+  .services__title {
+    font-size: 10.3vw;
+    line-height: 1;
+    letter-spacing: -1.08px;
+    padding: 20.5vw 5.13vw 6.15vw;
+  }
+
+  /* Картки */
+  .service-card {
+    width: 82.6vw;
+    height: 93.1vw;
+    margin-left: calc(82.6vw / -2);
+    top: 22.8vw;
+  }
+
+  /* Внутрішній блок */
+  .service-card__inner {
+    padding: 3.59vw 5.13vw 5.13vw;
+    border-radius: 3.08vw;
+  }
+
+  /* Фото */
+  .service-card__photo {
+    width: 41vw;
+    height: 56.4vw;
+    top: -14.1vw;
+  }
+
+  /* Заголовок картки */
+  .service-card__title {
+    font-size: 5.1vw;
+    letter-spacing: -0.48px;
+    line-height: 1.2;
+  }
+
+  /* Опис картки */
+  .service-card__desc {
+    font-size: 3.6vw;
+    line-height: 1.2;
+  }
+
+  /* CTA */
+  .services__actions {
+    top: 128vw;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: auto;
+    padding: 2.56vw 5.13vw 4.1vw;
+  }
+
+  .services__actions .btn {
+    width: 100%;
+    max-width: 89.7vw;
+    height: 16.4vw;
+    font-size: 3.8vw;
+    padding: 4.1vw 5.13vw;
+    min-width: 0;
+  }
+}
+
+/* ============ FEARS ============ */
+
+.fears {
+  position: relative;
+  z-index: 2; /* перекриває .steps щоб steps-фон заходив "під" rounded-bottom */
+  background: #F4EFEB;
+  border-radius: 0 0 clamp(24px, 3.125vw, 60px) clamp(24px, 3.125vw, 60px);
+  overflow: hidden;
+}
+
+/* Декоративний еліпс */
+.fears__ellipse {
+  position: absolute;
+  width: 78.37vw;
+  height: calc(78.37vw * 535.44 / 1504.67);
+  left: calc(50% - 39.18vw - 1.77vw);
+  top: clamp(20px, 3vw, 60px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: rotate(9.49deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Заголовок */
+.fears__title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5.21vw, 100px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+  text-align: center;
+  max-width: clamp(320px, 69vw, 1020px);
+  margin: 0 auto;
+  padding: clamp(40px, 4.48vw, 86px) var(--layout-padding) clamp(16px, 2.5vw, 30px);
+}
+
+/* Фото + картки */
+.fears__media {
+  position: relative;
+}
+
+.fears__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1920 / 1260;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Рядок карток — поверх фото, 15% від низу фото */
+.fears__cards {
+  position: absolute;
+  bottom: 15.08%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(12px, 2.71vw, 52px);
+  width: min(77.6vw, 1490px);
+}
+
+/* Картка */
+.fear-card {
+  flex: 1;
+  background: #fff;
+  border-radius: clamp(16px, 1.56vw, 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(18px, 2.19vw, 42px) clamp(16px, 2.71vw, 52px) clamp(18px, 2.19vw, 42px);
+  min-height: clamp(220px, 24.06vw, 462px);
+}
+
+/* Іконка */
+.fear-card__icon {
+  width: clamp(44px, 4.17vw, 80px);
+  height: clamp(44px, 4.17vw, 80px);
+  border: 0.69px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fear-card__icon svg {
+  width: clamp(22px, 2.3vw, 44px);
+  height: clamp(22px, 2.3vw, 44px);
+}
+
+/* Текст — притиснутий до низу картки */
+.fear-card__text {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(8px, 0.83vw, 16px);
+}
+
+.fear-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(15px, 1.46vw, 28px);
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: -0.03em;
+  color: #313131;
+}
+
+.fear-card__desc {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.83vw, 16px);
+  line-height: 1.4;
+  color: rgba(49, 49, 49, 0.8);
+}
+
+/* ---- FEARS MOBILE (≤767px) — Figma mobile design ---- */
+@media (max-width: 767px) {
+  /* Заокруглення секції */
+  .fears {
+    border-radius: 0 0 8.21vw 8.21vw;
+  }
+
+  /* Еліпс */
+  .fears__ellipse {
+    width: 83.7vw;
+    height: calc(83.7vw * 116.15 / 326.4);
+    left: 6.3vw;
+    top: 33.6vw;
+  }
+
+  /* Заголовок */
+  .fears__title {
+    font-size: 10.3vw;
+    line-height: 1;
+    letter-spacing: -0.936px;
+    padding: 8.1vw 5.13vw 3vw;
+    max-width: 100%;
+  }
+
+  /* Заголовок під фото */
+  .fears__title {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Фото */
+  .fears__photo {
+    width: 184.6vw;
+    height: 108vw;
+    object-fit: cover;
+    object-position: center top;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -7.69vw;
+    margin-bottom: 0;
+    z-index: 2;
+  }
+
+  /* Картки */
+  .fears__cards {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    flex-direction: column;
+    padding: 5.13vw 5.13vw 8.21vw;
+    gap: 3.59vw;
+    background: transparent;
+    z-index: 3;
+    margin-top: -15.38vw;
+  }
+
+  /* Картка */
+  .fear-card {
+    min-height: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 8.21vw;
+    padding: 5.13vw;
+    border-radius: 4.62vw;
+    box-shadow: none;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  /* Іконка */
+  .fear-card__icon {
+    width: 20.5vw;
+    height: 20.5vw;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  /* SVG */
+  .fear-card__icon svg {
+    width: 11.5vw;
+    height: 11.5vw;
+  }
+
+  /* Текст */
+  .fear-card__text {
+    margin-top: 0;
+    align-items: center;
+    text-align: center;
+    gap: 1.79vw;
+  }
+
+  /* Заголовок картки */
+  .fear-card__title {
+    font-size: 4.2vw;
+    line-height: 1.22;
+    letter-spacing: -0.491px;
+  }
+
+  /* Опис картки */
+  .fear-card__desc {
+    font-size: 3.5vw;
+    line-height: 1.46;
+  }
+}
+
+/* ============ STEPS (5 кроків до ідеального кольору) ============ */
+
+/*
+  Архітектура:
+  ┌─ .steps (z-index:1, margin-top:-overlap → заходить під .fears) ────────────────┐
+  │  ├─ .steps__inner — ТІЛЬКИ картки (без padding-bottom)                         │
+  │  │    ├─ .steps__left (position:sticky) — стопиться при кінці .steps__inner    │
+  │  │    └─ .steps__cards (padding-bottom:0) → sticky стоп = рівень останньої     │
+  │  └─ .steps__bottom-space — простір нижче карток, поза sticky-зоною             │
+  └────────────────────────────────────────────────────────────────────────────────┘
+  Фон: background-attachment:fixed на .steps → ЗАВЖДИ зафіксований відносно viewport.
+  Ефект: навіть поки скролимо Fears, фон кроків вже видно за rounded-corners fears.
+  Дизайн: ліва 1246px (64.9vw), картки 460px, відступ справа 214px (11.1vw)
+*/
+
+.steps {
+  position: relative;
+  z-index: 1;
+  /* Заходить "під" .fears → bg видно за заокругленнями */
+  margin-top: calc(-1 * clamp(40px, 5.21vw, 100px));
+  /* background-attachment:fixed — фон ЗАВЖДИ фіксований відносно viewport.
+     Ефект: зображення не рухається при скролі — "плаваємо" над ним */
+  background-image: url('../images/steps-bg.webp');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: #2a2520;
+}
+
+/* Gradient overlay для читабельності тексту зліва */
+.steps::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.20) 44%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+/* ---- Inner: обмежує зону sticky лівого блоку ---- */
+/*
+  Висота = тільки картки (padding-bottom:0).
+  .steps__left sticky зупиняється коли inner-bottom досягає viewport-bottom.
+  Тобто: sticky стоп = рівень нижнього краю останньої картки ✓
+*/
+.steps__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start; /* prevent stretching — sticky height matters */
+}
+
+/* ---- Sticky ліва панель ---- */
+
+.steps__left {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 580px;
+  /*
+    Дизайн: ліва колонка 1246px при 1920px = 64.9vw
+    Картки займають залишок (35.1%), що при 1920px = 674px.
+    460px картка + 214px відступ справа = 674px ✓
+  */
+  flex: 0 0 clamp(300px, 64.9vw, 1246px);
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 215/1920 = 11.2vw; padding-top: 218/1080(vh) ≈ 17vh */
+  padding: clamp(60px, 17vh, 220px) clamp(20px, 4vw, 80px) clamp(40px, 5vh, 80px) clamp(20px, 11.2vw, 215px);
+}
+
+.steps__title {
+  font-family: var(--font-heading);
+  font-size: clamp(38px, 5.21vw, 100px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: clamp(240px, 45vw, 868px);
+  margin: 0;
+}
+
+/*
+  Відео-картка зліва внизу.
+  Дизайн: 256×339px при 1920px → 13.3vw × 17.7vw
+  overflow:hidden кліпає відео в межах rounded картки.
+*/
+.steps__portrait {
+  margin-top: auto;
+  width: clamp(140px, 13.3vw, 256px);
+  height: clamp(170px, 17.7vw, 339px);
+  background: #fff;
+  border-radius: clamp(10px, 1.15vw, 22px);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.steps__portrait video,
+.steps__portrait img {
+  display: block;
+  width: 116%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---- Стовпець карток ---- */
+
+.steps__cards {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 0.94vw, 18px);
+  /* top: 257/1920 ≈ 13.4vw; right: 214/1920 ≈ 11.1vw
+     bottom: 0 → .steps__inner закінчується на останній картці, sticky лівого блоку стопиться тут */
+  padding: clamp(60px, 13.4vw, 257px) clamp(20px, 11.1vw, 214px) clamp(40px, 5vh, 80px) 0;
+}
+
+/* ---- Картка кроку ---- */
+
+/*
+  Scroll-Driven Animation (Chrome 115+, Safari 17.4+, FF 110+):
+  opacity та translateY прив'язані до прогресу скролу картки через viewport.
+  Відповідає на швидкість скролу — повільно скролиш → повільно виїжджає.
+*/
+@keyframes stepCardIn {
+  from { opacity: 0.1; transform: translateY(80px); }
+  to   { opacity: 1;   transform: translateY(0); }
+}
+
+.step-card {
+  background: #AEFFF7;
+  border-radius: clamp(14px, 1.04vw, 20px);
+  min-height: clamp(200px, 14.95vw, 287px);
+  display: flex;
+  flex-direction: column;
+  padding: clamp(14px, 1.67vw, 32px);
+}
+
+/* Сучасні браузери: анімація прив'язана до скролу */
+@supports (animation-timeline: view()) {
+  .step-card {
+    animation: stepCardIn ease-out both; /* ease-out = починає швидко, сповільнюється на місці */
+    animation-timeline: view(block);
+    /* entry 0% = нижній край картки торкається viewport bottom
+       entry 55% = 55% картки видно → повністю проявилась */
+    animation-range: entry 50% entry 250%;
+  }
+}
+
+/* Fallback: IntersectionObserver-тригер (старі браузери) */
+@supports not (animation-timeline: view()) {
+  .step-card {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  }
+  .step-card.is-inview {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Бейдж «Крок N» — таблетка у верхньому лівому куті */
+.step-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: clamp(4px, 0.42vw, 8px) clamp(12px, 1.25vw, 24px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 200px;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(14px, 1.25vw, 24px);
+  line-height: 1.4;
+  color: rgba(49, 49, 49, 0.8);
+  white-space: nowrap;
+}
+
+/* Заголовок + опис — притиснуті до низу картки */
+.step-card__body {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 0.83vw, 16px);
+}
+
+.step-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.46vw, 28px);
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: -0.03em;
+  color: #313131;
+}
+
+.step-card__desc {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 0.83vw, 16px);
+  line-height: 1.4;
+  color: rgba(49, 49, 49, 0.8);
+  max-width: 95%;
+}
+
+/* ---- ≤ 979px: вертикальна колонка ---- */
+
+/* ---- Простір нижче карток (поза sticky-зоною) ---- */
+/*
+  Виноситься за .steps__inner: sticky лівого блоку вже завершився.
+  Секція продовжується — є дихання після останньої картки.
+*/
+.steps__bottom-space {
+  height: clamp(80px, 10vw, 200px);
+}
+
+/* ---- ≤ 979px: вертикальна колонка ---- */
+
+/* ============ ABOUT (Мій фокус / майстер) ============ */
+
+/*
+  Архітектура:
+  ┌─ .about ───────────────────────────────────────────────────────────────┐
+  │  ├─ .about__ellipse — декоративний еліпс (абс)                        │
+  │  ├─ .about__top — верхня частина (позиція:relative)                   │
+  │  │    ├─ .about__photo (position:absolute, right) — фото з mask-fade  │
+  │  │    ├─ .about__badge (position:absolute) — темне коло «25 років»    │
+  │  │    ├─ .about__title — заголовок лівий (normal flow)                │
+  │  │    └─ .about__author — ім'я + посада (normal flow)                 │
+  │  └─ .about__cta — біла картка внизу (CTA)                             │
+  └────────────────────────────────────────────────────────────────────────┘
+  Дизайн 1920px: ліво 215px | фото 773×1109px, left 1007px | права 140px
+  Біла картка: 1491×700px, left 215px, top 1089px
+*/
+
+.about {
+  position: relative;
+  background: #F4EFEB;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+/* Декоративний еліпс — той же кут що у fears */
+.about__ellipse {
+  position: absolute;
+  width: 122.2vw;
+  height: 43.49vw;
+  top: clamp(74px, 14.65vw, 190px);
+  left: 50%;
+  transform: translateX(calc(-50% - 2.76vw)) rotate(9.49deg);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ---- Верхня зона: текст + фото (абс) ---- */
+.about__top {
+  position: relative;
+  /* padding-top: 372/1920 = 19.38vw → заголовок починається в дизайні */
+  padding-top: clamp(60px, 19.38vw, 372px);
+  padding-left: clamp(20px, 11.2vw, 215px);
+  /* padding-bottom: 307px — пустий простір між автором та CTA-карткою
+     (у ньому фото fade-out та задній фон) */
+  padding-bottom: clamp(60px, 16vw, 307px);
+}
+
+.about__title {
+  max-width: clamp(280px, 40.4vw, 776px);
+  font-size: clamp(28px, 3.33vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+}
+
+.about__author {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* gap від низу заголовку до автора: 66px при 1920 = 3.44vw */
+  margin-top: clamp(20px, 3.44vw, 66px);
+}
+
+.about__name {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(16px, 1.46vw, 28px);
+  line-height: 1.21;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+}
+
+.about__role {
+  font-size: clamp(11px, 0.83vw, 16px);
+  line-height: 1.4;
+  color: rgba(49, 49, 49, 0.8);
+}
+
+/* Фото — абсолютне, справа, з mask-градієнтом внизу */
+.about__photo {
+  position: absolute;
+  /* right: 140/1920 = 7.29vw — правий відступ секції */
+  right: clamp(0px, 7.29vw, 140px);
+  /* top: 120/1920 = 6.25vw */
+  top: clamp(40px, 6.25vw, 120px);
+  /* width: 773/1920 = 40.26vw */
+  width: clamp(200px, 40.26vw, 773px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about__photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* Градієнт знизу — зображення плавно зникає перед CTA-карткою.
+     Пороги з дизайну: 67.55% непрозоре → 93.53% повністю прозоре */
+  -webkit-mask-image: linear-gradient(180deg, #000 67.55%, transparent 93.53%);
+  mask-image: linear-gradient(180deg, #000 67.55%, transparent 93.53%);
+}
+
+/* Темний бейдж «25 років досвіду» */
+.about__badge {
+  position: absolute;
+  /* width/height: 229/1920 = 11.92vw (коло) */
+  width: clamp(100px, 11.92vw, 229px);
+  height: clamp(100px, 11.92vw, 229px);
+  /* left: 937/1920 = 48.8vw; top: 730/1920 = 38vw */
+  left: clamp(140px, 48.8vw, 937px);
+  top: clamp(280px, 38vw, 730px);
+  background: #322C2B;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(10px, 1.56vw, 30px);
+  z-index: 2;
+}
+
+.about__badge-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3.33vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.about__badge-text {
+  display: block;
+  font-size: clamp(8px, 0.83vw, 16px);
+  line-height: 1.2;
+  color: #fff;
+  max-width: clamp(60px, 7.34vw, 141px);
+}
+
+/* ---- CTA-картка (біла, внизу секції) ---- */
+/*
+  Ширина: 1491/1920 = 77.6vw (margin 215px з обох сторін)
+  Висота: 700px = 36.46vw
+  border-radius: 40px = 2.08vw
+  padding-top: 81px; padding-bottom: 102px (700-475-123)
+  Заголовок 100px; кнопка 600×123px
+*/
+.about__cta {
+  position: relative;
+  z-index: 1; /* перекриває fade-область фото */
+  margin: 0 clamp(20px, 11.2vw, 215px);
+  background: #fff;
+  border-radius: clamp(20px, 2.08vw, 40px);
+  padding: clamp(36px, 4.22vw, 81px) clamp(20px, 8vw, 154px) clamp(46px, 5.31vw, 102px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about__cta-title {
+  max-width: clamp(280px, 60.6vw, 1164px);
+  font-size: clamp(28px, 5.21vw, 100px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+  /* gap між заголовком та кнопкою: 475-(81+330)=64px */
+  margin-bottom: clamp(28px, 3.33vw, 64px);
+}
+
+.about__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 600/1920 = 31.25vw; height: 123/1920 = 6.41vw */
+  width: clamp(200px, 31.25vw, 600px);
+  height: clamp(48px, 6.41vw, 123px);
+  border: 1px solid #000;
+  border-radius: 140px;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.25vw, 24px);
+  color: #000;
+  transition: background var(--duration-fast) var(--ease),
+              color var(--duration-fast) var(--ease);
+}
+
+.about__cta-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ---- ≤ 979px: адаптація ---- */
+@media (max-width: 979px) {
+  .about__top {
+    padding-top: clamp(40px, 8vw, 80px);
+    padding-bottom: clamp(40px, 8vw, 80px);
+  }
+
+  .about__photo {
+    width: min(50vw, 340px);
+    top: clamp(20px, 4vw, 40px);
+    right: 0;
+  }
+
+  .about__title {
+    font-size: clamp(24px, 4.5vw, 44px);
+    max-width: 52%;
+  }
+
+  .about__badge {
+    width: clamp(80px, 13vw, 130px);
+    height: clamp(80px, 13vw, 130px);
+    left: auto;
+    right: min(50vw, 340px);
+    top: clamp(180px, 44vw, 380px);
+  }
+
+  .about__cta {
+    margin: 0 clamp(16px, 4vw, 32px);
+    padding: clamp(28px, 5vw, 48px) clamp(16px, 5vw, 40px) clamp(28px, 5vw, 48px);
+  }
+
+  .about__cta-title {
+    font-size: clamp(24px, 5vw, 52px);
+  }
+
+  .about__cta-btn {
+    width: clamp(200px, 55vw, 380px);
+    height: clamp(44px, 8vw, 70px);
+  }
+}
+
+@media (max-width: 567px) {
+  /*
+    Мобільний лейаут about: вертикальний стек.
+    Фото — зверху на всю ширину (виходить за padding батька).
+    Заголовок + автор — нижче, на повну ширину. Без overlap.
+  */
+  .about__top {
+    padding-top: 0;
+    padding-right: 5vw;
+    padding-bottom: 7vw;
+  }
+
+  /* Переводимо фото з absolute у flow */
+  .about__photo {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100vw;
+    margin-left: calc(-11.2vw);
+    height: 62vw;
+    overflow: hidden;
+  }
+
+  .about__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* Заголовок */
+  .about__title {
+    max-width: 100%;
+    font-size: 7vw;
+    padding-top: 6vw;
+    margin-right: 0;
+  }
+
+  /* Бейдж */
+  .about__badge {
+    position: absolute;
+    left: auto;
+    right: 3vw;
+    top: calc(62vw - 11.28vw);
+    width: 18.46vw;
+    height: 18.46vw;
+    padding: 0 2.05vw;
+  }
+
+  .about__badge-num { font-size: 5.64vw; }
+  .about__badge-text { font-size: 1.79vw; max-width: 13.33vw; }
+
+  .about__cta {
+    margin: 0 4vw;
+  }
+
+  .about__cta-title {
+    font-size: 6.5vw;
+  }
+
+  .about__cta-btn {
+    width: 100%;
+    max-width: 87.18vw;
+    height: 14vw;
+  }
+}
+
+/* ============ CONTACT ============ */
+
+/*
+  Остання секція. border-radius знизу — 100px.
+  Карта виходить за межі секції (overflow:hidden кліпає).
+  Radial gradient поверх карти — центр видно, краї #F4EFEB.
+  Дизайн 1920px:
+    - Секція: 1920×1217px
+    - Карта: 2680×1495px at left −879px top −114px
+    - Попап: center, top 320px, 432×169px + стрілка 32px
+    - Телефон: font-size 180px, top 765px (від попапу ~257px)
+    - Кнопки: 725+722×123px, gap 48px, padding-x 214px, top 1010px
+*/
+
+.contact {
+  position: relative;
+  z-index: 4; /* вище footer (z:1) → беж-закруглення малюється поверх темного фону */
+  background: #F4EFEB;
+  /* Закруглення лише знизу — як «подушка» фінальної секції */
+  border-radius: 0 0 clamp(40px, 5.21vw, 100px) clamp(40px, 5.21vw, 100px);
+  overflow: hidden;
+  /*
+    Телефон стартує на 39.84vw від верху секції (765px при 1920).
+    Попап тепер position:absolute — не займає місця у потоці.
+    padding-top напряму позиціонує телефон.
+  */
+  padding-top: clamp(120px, 39.84vw, 765px);
+  /* padding-bottom: 84/1920 = 4.375vw */
+  padding-bottom: clamp(30px, 4.375vw, 84px);
+}
+
+/* ---- Карта (фоновий шар) ---- */
+/*
+  Карта — <img class="js-map-img"> всередині .contact__map.
+  Позиція встановлюється через JS-калібрувальник (Ctrl+Shift+M).
+  Після калібрування: left і top фіксуються як фінальні vw-значення.
+  Gradient overlay — ::after поверх зображення.
+*/
+.contact__map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Зображення карти: позиція зафіксована після калібрування */
+.contact__map img {
+  position: absolute;
+  width: 160vw;
+  height: auto;
+  left: -18.30vw;
+  top: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Radial gradient поверх карти: центр прозорий, краї бежеві */
+.contact__map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    55% 80% at 50% 44%,
+    rgba(244, 239, 235, 0)   0%,
+    rgba(244, 239, 235, 0.55) 52%,
+    #F4EFEB 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- Попап з адресою ---- */
+/*
+  position:absolute — виноситься з потоку, НЕ впливає на padding-top секції.
+  Стрілка балуна завжди на 26.4vw від верху секції — те саме vw-значення
+  що у точки на карті (карта = pure vw, не змінюється з viewport).
+
+  Механіка: top:26.4vw — це де КІНЧИК СТРІЛКИ.
+  translateY(calc(-100% - 18px)) піднімає попап вгору на його висоту + 18px стрілки.
+  Результат: кінчик стрілки = 26.4vw при БУДЬ-ЯКІЙ ширині екрану. ✓
+*/
+.contact__popup {
+  position: absolute;
+  z-index: 1;
+  /* кінчик стрілки на 23.27vw = 26.4vw - 3.13vw (map тепер top:0) */
+  top: 23.27vw;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(-100% - 18px));
+  /* 432/1920 = 22.5vw */
+  width: clamp(220px, 22.5vw, 432px);
+  background: #322C2B;
+  border-radius: clamp(12px, 1.04vw, 20px);
+  padding: clamp(14px, 1.56vw, 30px) clamp(14px, 1.3vw, 25px) clamp(12px, 1.15vw, 22px);
+  text-align: center;
+}
+
+/* Стрілка-трикутник під попапом (вказує на точку карти) */
+.contact__popup::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 18px solid #322C2B;
+}
+
+.contact__address {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(13px, 1.46vw, 28px);
+  line-height: 1.21;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: clamp(6px, 0.8vw, 16px);
+}
+
+.contact__map-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: clamp(10px, 0.94vw, 18px);
+  line-height: 1.2;
+  color: #fff;
+  text-decoration: underline;
+  transition: opacity 0.3s var(--ease);
+}
+.contact__map-link:hover { opacity: 0.75; }
+
+/* ---- Телефон ---- */
+.contact__phone {
+  position: relative;
+  z-index: 1;
+  display: block;
+  text-align: center;
+  /* позиція = padding-top секції (39.84vw) — попап більше не в потоці */
+  margin-top: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 9.375vw, 180px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #322C2B;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.3s var(--ease);
+}
+.contact__phone:hover { opacity: 0.7; }
+
+/* ---- Кнопки Telegram / Viber ---- */
+.contact__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  /* gap: 48/1920 = 2.5vw */
+  gap: clamp(12px, 2.5vw, 48px);
+  /* margin від низу телефону (963px) до кнопок (1010px): 47px = 2.45vw */
+  margin-top: clamp(16px, 2.45vw, 47px);
+  /* padding-x: 214/1920 = 11.15vw */
+  padding: 0 clamp(20px, 11.15vw, 214px);
+}
+
+.contact__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.83vw, 16px);
+  /* height: 123/1920 = 6.41vw */
+  height: clamp(48px, 6.41vw, 123px);
+  background: #fff;
+  border-radius: 140px;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.25vw, 24px);
+  color: #000;
+  text-decoration: none;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.contact__btn:hover {
+  background: #322C2B;
+  color: #fff;
+}
+
+.contact__btn-icon {
+  /* width/height: 48/1920 = 2.5vw */
+  width: clamp(20px, 2.5vw, 48px);
+  height: clamp(20px, 2.5vw, 48px);
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* ---- Mobile ≤ 767px ---- */
+@media (max-width: 767px) {
+  .contact__popup {
+    width: 85vw;
+  }
+
+  .contact__phone {
+    font-size: 8.5vw;
+    margin-top: 8vw;
+    white-space: normal;
+  }
+
+  .contact__actions {
+    flex-direction: column;
+    padding: 0 5vw;
+    gap: 3.08vw;
+    margin-top: 5vw;
+  }
+
+  .contact__btn {
+    height: 14vw;
+  }
+}
+
+/* ============ STEPS — mobile ============ */
+
+@media (max-width: 979px) {
+  /* На touch-пристроях background-attachment:fixed не підтримується (iOS Safari) */
+  .steps {
+    background-attachment: scroll;
+  }
+
+  .steps__inner {
+    flex-direction: column;
+  }
+
+  .steps__left {
+    position: relative; /* sticky вимкнено — вертикальна розкладка */
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: clamp(60px, 14vw, 120px) clamp(20px, 5vw, 30px) clamp(24px, 6vw, 48px);
+  }
+
+  .steps__portrait {
+    display: none;
+  }
+
+  .steps__cards {
+    width: 100%;
+    padding: 0 clamp(16px, 5vw, 24px) clamp(40px, 8vw, 80px);
+    gap: 10px;
+  }
+
+  .step-card {
+    min-height: auto;
+    padding: 18px 20px;
+  }
+
+  .steps::before {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+}
+
+
+/* ---- STEPS MOBILE (≤767px) — Figma mobile design ---- */
+@media (max-width: 767px) {
+  .steps {
+    padding-bottom: 12.31vw;
+  }
+
+  .steps__bottom-space {
+    display: none;
+  }
+
+  /* Ліва панель */
+  .steps__left {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30.77vw 5.13vw 5.13vw;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Заголовок */
+  .steps__title {
+    font-size: 10.26vw;
+    line-height: 1;
+    letter-spacing: -0.96px;
+    max-width: 55%;
+  }
+
+  /* Портрет */
+  .steps__portrait {
+    display: block;
+    width: 27.2vw;
+    height: 35.9vw;
+    border-radius: 2.31vw;
+    flex-shrink: 0;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  .steps__portrait img,
+  .steps__portrait video {
+    width: 116%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Картки */
+  .steps__cards {
+    padding: 5.13vw 4.5vw 12.31vw;
+    gap: 3.59vw;
+  }
+
+  /* Картка */
+  .step-card {
+    min-height: 46.15vw;
+    padding: 5.13vw;
+    border-radius: 4.1vw;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6.15vw;
+  }
+
+  /* Бейдж */
+  .step-card__badge {
+    align-self: center;
+    font-size: 3.5vw;
+  }
+
+  /* Тіло */
+  .step-card__body {
+    align-items: center;
+    text-align: center;
+    gap: 4.1vw;
+    margin-top: 0;
+  }
+
+  /* Заголовок картки */
+  .step-card__title {
+    font-size: 6.2vw;
+    letter-spacing: -0.54px;
+    line-height: 1;
+    text-align: center;
+  }
+
+  /* Опис */
+  .step-card__desc {
+    font-size: 4.1vw;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 100%;
+  }
+}
+
+/* ============================================================
+   CURTAIN WRAPPER — contact є шторою, footer відкривається знизу
+   Wrapper обмежує sticky-зону footer: він прибитий до низу viewport
+   тільки поки wrapper у зоні видимості.
+   ============================================================ */
+
+.curtain-wrapper {
+  position: relative;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1; /* нижче contact (z:4) — contact-шторка перекриває footer поки вона у viewport */
+  background: #322C2B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 2.08vw, 40px);
+  padding-left: clamp(20px, 3.125vw, 60px);
+  padding-right: clamp(20px, 3.125vw, 60px);
+  /* margin-top = border-radius contact (5.21vw/100px) → footer bg підлазить точно під закруглення */
+  margin-top: calc(-1 * clamp(40px, 5.21vw, 100px));
+  /* padding-top = offset (5.21vw) + бажаний відступ (~2vw) */
+  padding-top: clamp(60px, 7.5vw, 144px);
+  padding-bottom: clamp(20px, 2.34vw, 45px);
+}
+
+/* Ліва група: лого + копірайт */
+.footer__left {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.08vw, 40px);
+  flex-shrink: 0;
+}
+
+.footer__logo {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.footer__logo img {
+  display: block;
+  width: clamp(72px, 7.18vw, 138px);
+  height: auto;
+}
+
+.footer__copy {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.833vw, 16px);
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.64);
+  white-space: nowrap;
+}
+
+/* Центральна навігація — тільки посилання */
+.footer__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.6vw, 50px);
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer__link {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.833vw, 16px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.64);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease);
+}
+.footer__link:hover { color: #fff; }
+
+/* Кредит розробника */
+.footer__credit {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: clamp(13px, 0.833vw, 16px);
+  line-height: 1.2;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  transition: opacity 0.3s var(--ease);
+}
+.footer__credit:hover { opacity: 0.7; }
+
+/* Mobile ≤ 567px */
+@media (max-width: 567px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 6vw 5vw;
+    gap: 4.1vw;
+    text-align: center;
+  }
+
+  .footer__left {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.05vw;
+  }
+
+  .footer__nav {
+    flex-direction: column;
+    gap: 2.56vw;
+  }
+
+  .footer__copy,
+  .footer__link {
+    font-size: 3.08vw;
+  }
+
+  .footer__credit {
+    font-size: 3.59vw;
+  }
+}
+
+/* ============================================================
+   MOBILE & TABLET POLISH
+   Організовано по секціях — всі правки нижче переважають
+   попередні media queries через каскадний порядок.
+   ============================================================ */
+
+/* ---- HEADER: прибираємо тагалайн на телефонах ---- */
+@media (max-width: 767px) {
+  .header {
+    padding: 4vw 5vw;
+    gap: 2.05vw;
+  }
+  .header__tagline {
+    display: none;
+  }
+  .header__logo {
+    height: 6.5vw;
+  }
+  .header__cta {
+    width: 26vw;
+    height: 10vw;
+    font-size: 3.5vw;
+  }
+}
+
+/* ---- HERO: більше повітря, кнопки з висотою для пальців ---- */
+@media (max-width: 767px) {
+  .hero__content {
+    padding: 5vw 6vw 9vw;
+  }
+  .hero__title {
+    font-size: 8.8vw;
+    margin-bottom: 5vw;
+  }
+  .hero__desc {
+    font-size: 3.8vw;
+    margin-bottom: 8vw;
+    max-width: 100%;
+    line-height: 1.4;
+  }
+  .btn--white,
+  .btn--outline {
+    min-height: 14vw;
+    font-size: 3.8vw;
+    padding: 0 6vw;
+  }
+}
+
+/* FEARS mobile — see main block above (≤767px) */
+
+/* ---- STEPS: вертикальна розкладка — більше повітря між кроками ---- */
+@media (max-width: 979px) {
+  .steps__left {
+    padding: clamp(52px, 32vw, 100px) clamp(20px, 5.5vw, 32px) clamp(20px, 5vw, 36px);
+  }
+  .steps__title {
+    font-size: clamp(32px, 7.5vw, 72px);
+  }
+  .steps__cards {
+    gap: 14px;           /* було 10px */
+    padding: 0 clamp(16px, 4.5vw, 24px) clamp(52px, 11vw, 80px);
+  }
+  .step-card {
+    padding: clamp(20px, 5vw, 26px) clamp(20px, 5.5vw, 26px);
+    min-height: clamp(120px, 22vw, 180px);
+    border-radius: clamp(16px, 3vw, 22px);
+  }
+  .step-card__badge {
+    font-size: clamp(13px, 3.5vw, 17px);
+    padding: clamp(4px, 1.2vw, 8px) clamp(12px, 3.5vw, 20px);
+  }
+  .step-card__title {
+    font-size: clamp(18px, 4.5vw, 26px);
+  }
+  .step-card__desc {
+    font-size: clamp(13px, 3.5vw, 15px);
+    line-height: 1.45;
+    max-width: 100%;
+  }
+  .step-card__body {
+    gap: clamp(8px, 2vw, 12px);
+  }
+}
+
+/* ---- ABOUT: вертикальний лейаут 568–767px ---- */
+@media (min-width: 568px) and (max-width: 767px) {
+  .about__top {
+    padding-top: 0;
+    padding-right: clamp(24px, 4vw, 36px);
+    padding-bottom: clamp(32px, 6vw, 48px);
+  }
+  .about__photo {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: 100vw;
+    margin-left: calc(-1 * clamp(20px, 11.2vw, 215px));
+    height: 52vw;
+    overflow: hidden;
+  }
+  .about__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .about__title {
+    max-width: 100%;
+    font-size: clamp(24px, 5.5vw, 38px);
+    padding-top: clamp(20px, 4vw, 30px);
+  }
+  .about__badge {
+    left: auto;
+    right: clamp(12px, 2.5vw, 20px);
+    top: calc(52vw - 44px);
+    width: clamp(76px, 12vw, 100px);
+    height: clamp(76px, 12vw, 100px);
+  }
+  .about__badge-num { font-size: clamp(22px, 4.5vw, 30px); }
+  .about__badge-text { font-size: clamp(7px, 1.4vw, 10px); }
+}
+
+/* ---- ABOUT MOBILE (≤767px) — Figma mobile design ---- */
+@media (max-width: 767px) {
+
+  /* Секція: відступ зверху = 80px / 390 */
+  .about {
+    padding-top: 20.51vw;
+    padding-bottom: 0;
+  }
+
+  /* Верхня зона: фіксована висота 476px, всі діти — абсолютні */
+  .about__top {
+    position: relative;
+    height: 122.05vw;   /* 476px */
+    padding: 0;
+  }
+
+  /* Еліпс: Figma coords */
+  .about__ellipse {
+    width: 189.57vw;    /* 739.34px */
+    height: calc(189.57vw * 263.1 / 739.34);
+    left: -46.67vw;     /* -182px */
+    top: 21.26vw;       /* 82.91px */
+    transform: rotate(9.49deg);
+  }
+
+  /* Заголовок: абсолютне, лівий верхній кут */
+  .about__title {
+    position: absolute;
+    left: 5.13vw;       /* 20px */
+    top: 0;
+    width: 89.23vw;     /* 348px */
+    max-width: none;
+    font-size: 7.18vw;  /* 28px */
+    line-height: 1;
+    letter-spacing: -0.819px;
+    padding-top: 0;
+    margin-right: 0;
+  }
+
+  /* Автор: абсолютне, під заголовком */
+  .about__author {
+    position: absolute;
+    left: 5.13vw;       /* 20px */
+    top: 39.49vw;       /* 154px */
+    margin-top: 0;
+    gap: 2.05vw;        /* 8px */
+  }
+
+  .about__name {
+    font-size: 5.13vw;  /* 20px */
+    letter-spacing: -0.48px;
+  }
+
+  .about__role {
+    font-size: 4.1vw;   /* 16px */
+  }
+
+  /* Фото: абсолютне, справа, виходить за правий край секції */
+  .about__photo {
+    position: absolute;
+    right: -16.05vw;    /* -125px (виходить за viewport) */
+    top: 31.03vw;       /* 121px */
+    bottom: -7.18vw;    /* -28px (заходить під .about__top) */
+    width: auto;
+    height: auto;
+    margin-left: 0;
+    overflow: visible;
+  }
+
+  .about__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* Бейдж: лівий нижній кут */
+  .about__badge {
+    position: absolute;
+    left: 3.59vw;       /* 14px = 390-228-148 */
+    top: 73.31vw;       /* 285.91px */
+    right: auto;
+    width: 37.95vw;     /* 148px */
+    height: 37.95vw;
+    padding: 0 0 3.08vw; /* 12px padding-bottom — текст зміщується вниз */
+  }
+
+  .about__badge-num {
+    font-size: 12.31vw; /* 48px */
+  }
+
+  .about__badge-text {
+    font-size: 3.08vw;  /* 12px */
+    max-width: 28.72vw; /* 112px */
+  }
+
+  /* CTA-картка */
+  .about__cta {
+    margin: 0 4vw;           /* 15.6px */
+    border-radius: 5.13vw;   /* 20px */
+    padding: 8.21vw 6vw 9.23vw; /* 32px 23.4px 36px */
+  }
+
+  .about__cta-title {
+    font-size: 7.51vw;       /* 29.3px */
+    line-height: 1.09;
+    letter-spacing: -0.877px;
+    margin-bottom: 5.13vw;
+    max-width: 100%;
+  }
+
+  .about__cta-btn {
+    background: #322C2B;
+    color: #fff;
+    border: 1px solid #322C2B;
+    width: 100%;
+    max-width: 80vw;         /* 312px */
+    height: 16.41vw;         /* 64px */
+    font-size: 4vw;          /* 15.6px */
+  }
+
+  .about__cta-btn:hover {
+    background: transparent;
+    color: #322C2B;
+  }
+}
+
+/* ---- CONTACT MOBILE (≤767px) — Figma design ---- */
+@media (max-width: 767px) {
+  /* Секція: padding-top = позиція телефону від верху секції (559.52px) */
+  .contact {
+    padding-top: 143.47vw;   /* 559.52px */
+    padding-bottom: 12.84vw; /* 50px */
+    border-radius: 0 0 8.21vw 8.21vw; /* 32px */
+  }
+
+  /* Карта: позиція і зум керуються через CSS-змінні з JS debug-панелі.
+     Підхід: явні width/height/left/top (не transform) — без обрізання.
+     --map-mob-w:  ширина зображення (vw). Менше = zoom in, більше = zoom out.
+     --map-mob-h:  висота зображення (vw).
+     --map-mob-x:  горизонтальний зсув (vw). Від'ємне — зсув вліво.
+     --map-mob-y:  вертикальний зсув (vw). Від'ємне — зсув вгору.          */
+  .contact__map {
+    overflow: hidden; /* обрізаємо карту в межах контейнера, не трансформом */
+  }
+  .contact__map img {
+    position: absolute;
+    width: var(--map-mob-w, 350vw);
+    height: var(--map-mob-h, 240vw);
+    left: var(--map-mob-x, -125vw);
+    top: var(--map-mob-y, -20vw);
+    object-fit: cover;
+    transform: none;
+  }
+
+  /* Gradient overlay: прозора зона у верхній частині де попап */
+  /* Gradient: тільки зверху і знизу, по горизонталі прозорий */
+  .contact__map::after {
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      #F4EFEB 0%,
+      rgba(244, 239, 235, 0) 20%,
+      rgba(244, 239, 235, 0) 80%,
+      #F4EFEB 100%
+    );
+  }
+
+  /* Попап */
+  .contact__popup {
+    top: 55.33vw;           /* 215.78px */
+    width: 87.18vw;         /* 340px */
+    padding: 6.15vw 3.59vw; /* 24px 14px */
+    gap: 4.1vw;             /* 16px */
+    border-radius: 3.08vw;  /* 12px */
+  }
+
+  /* Адреса в попапі */
+  .contact__address {
+    font-size: 5.13vw;      /* 20px */
+    letter-spacing: -0.39px;
+    margin-bottom: 0;
+    padding-bottom: 3vw;
+  }
+
+  /* Посилання на карту */
+  .contact__map-link {
+    font-size: 4.1vw;       /* 16px */
+  }
+
+  /* Телефон */
+  .contact__phone {
+    font-size: 9.51vw;      /* 37.1px */
+    letter-spacing: -1.111px;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+
+  /* Кнопки */
+  .contact__actions {
+    flex-direction: column;
+    padding: 0 5.5vw;       /* 21.45px */
+    gap: 3.59vw;            /* 14px */
+    margin-top: 6vw;        /* ~23px */
+  }
+
+  .contact__btn {
+    flex: none;             /* скидаємо flex: 1 який перебиває height */
+    width: 100%;
+    height: 16vw;           /* ~70px */
+    background: #fff;
+    border-radius: 35.9vw;
+    font-size: 4.21vw;
+    gap: 2.56vw;
+    color: #000;
+  }
+
+  .contact__btn:hover {
+    background: #322C2B;
+    color: #fff;
+  }
+}
+
+/* ---- FOOTER: відступ зверху враховує overlap contact (-40px) + дихання ---- */
+@media (max-width: 567px) {
+  .footer {
+    padding: 20vw 6vw 8vw;
+    gap: 5.13vw;
+  }
+}
