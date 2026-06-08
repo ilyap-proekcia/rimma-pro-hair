@@ -1,6 +1,14 @@
 <?php
 get_header();
 $uri = get_template_directory_uri();
+
+/* Хелпер: виводить значення з Customizer (з дефолтом) */
+function rc( $key ) {
+    echo wp_kses( get_theme_mod( $key ), [ 'br' => [], 'strong' => [], 'em' => [], 'nbsp' => [] ] );
+}
+function ru( $key ) {
+    echo esc_url( get_theme_mod( $key ) );
+}
 ?>
 
   <!-- ============ HERO ============ -->
@@ -15,18 +23,18 @@ $uri = get_template_directory_uri();
     <header class="header">
       <div class="header__left">
         <img class="header__logo" src="<?php echo $uri; ?>/assets/images/logo.svg" alt="Rimma" width="138" height="43">
-        <span class="header__tagline">Колорист,<br>перукар</span>
+        <span class="header__tagline"><?php rc('header_tagline'); ?></span>
       </div>
 
       <div class="header__address">
         <svg class="header__address-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true">
           <path fill="currentColor" d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/>
         </svg>
-        <span>м.Київ, Осокорки/Позняки,<br>вул. Срібнокільська 1</span>
+        <span><?php rc('contact_address'); ?></span>
       </div>
 
-      <a class="header__phone" href="tel:+380509575878">+38 050 957 58 78</a>
-      <a class="header__cta" href="#booking">Записатися</a>
+      <a class="header__phone" href="tel:<?php rc('contact_phone_tel'); ?>"><?php rc('contact_phone_display'); ?></a>
+      <a class="header__cta" href="#booking"><?php rc('header_cta'); ?></a>
       <button class="header__burger" aria-label="Меню">
         <svg width="32" height="14" viewBox="0 0 32 14" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="0" y1="0.75" x2="32" y2="0.75" stroke="white" stroke-width="1.5"/>
@@ -37,25 +45,24 @@ $uri = get_template_directory_uri();
 
     <div class="hero__content">
       <h1 class="hero__title animation--fade-in">
-        Передбачуваний результат фарбування, у якому ви впевнені на&nbsp;100%
+        <?php rc('hero_title'); ?>
       </h1>
       <p class="hero__desc animation--fade-in stagger-2">
-        Фарбування будь-якої складності: AirTouch, блонд, вихід з чорного,
-        камуфляж сивини та точні стрижки з гарантією дбайливого ставлення до вашого волосся
+        <?php rc('hero_desc'); ?>
       </p>
       <div class="hero__actions animation--fade-in stagger-3">
-        <a href="#booking" class="btn btn--white">Записатися на процедуру</a>
-        <a href="#consultation" class="btn btn--outline">Безкоштовна консультація</a>
+        <a href="#booking" class="btn btn--white"><?php rc('hero_btn1'); ?></a>
+        <a href="#consultation" class="btn btn--outline"><?php rc('hero_btn2'); ?></a>
       </div>
     </div>
 
   </section>
 
-  <!-- ============ SERVICES (sticky fan carousel) ============ -->
+  <!-- ============ SERVICES ============ -->
   <div class="services-scroll-wrapper js-services-wrapper">
 
     <h2 class="services__title animation--fade-in">
-      Послуги, які<br>трансформують ваш образ
+      <?php rc('services_title'); ?>
     </h2>
 
     <section class="services js-services" id="services">
@@ -64,76 +71,23 @@ $uri = get_template_directory_uri();
 
       <div class="services__fan js-fan" role="region" aria-label="Послуги">
 
-        <article class="service-card" data-index="0">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-1.webp" alt="AirTouch, Balayage, Shatush, Мелірування">
+        <?php for ( $n = 1; $n <= 6; $n++ ) : ?>
+        <article class="service-card" data-index="<?php echo $n - 1; ?>">
+          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-<?php echo $n; ?>.webp" alt="<?php echo esc_attr( get_theme_mod( "service_{$n}_title" ) ); ?>">
           <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">1</span>
+            <span class="service-card__num" aria-hidden="true"><?php echo $n; ?></span>
             <div class="service-card__text">
-              <h3 class="service-card__title">AirTouch, Balayage,<br>Shatush, Мелірування</h3>
-              <p class="service-card__desc">М'які переливи кольору з ефектом «сонячних бликів». Малюнок непомітно відростає, звільняючи вас від частих візитів до майстра — результат тримається 3–4 місяці.</p>
+              <h3 class="service-card__title"><?php rc("service_{$n}_title"); ?></h3>
+              <p class="service-card__desc"><?php rc("service_{$n}_desc"); ?></p>
             </div>
           </div>
         </article>
-
-        <article class="service-card" data-index="1">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-2.webp" alt="Фарбування в один тон / Камуфляж сивини">
-          <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">2</span>
-            <div class="service-card__text">
-              <h3 class="service-card__title">Фарбування в один тон /<br>Камуфляж сивини</h3>
-              <p class="service-card__desc">Глибокий, насичений і стійкий колір, який на 100% перекриває сивину, повертаючи волосяним цибулинам силу, а пасмам — глянцевий блиск.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="service-card" data-index="2">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-3.webp" alt="Чистий блонд">
-          <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">3</span>
-            <div class="service-card__text">
-              <h3 class="service-card__title">Чистий блонд</h3>
-              <p class="service-card__desc">Рівний, дорогий відтінок без небажаної жовтизни. Максимальне збереження м'якості, щільності та природного блиску волосся навіть при тотальному висвітленні.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="service-card" data-index="3">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-4.webp" alt="Вихід з чорного / Виправлення кольору">
-          <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">4</span>
-            <div class="service-card__text">
-              <h3 class="service-card__title">Вихід з чорного /<br>Виправлення кольору</h3>
-              <p class="service-card__desc">Дбайливе видалення накопиченого темного пігменту або ліквідація «плям» після інших салонів. Повернення волоссю чистого відтінку без втрати довжини.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="service-card" data-index="4">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-5.webp" alt="Контуринг">
-          <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">5</span>
-            <div class="service-card__text">
-              <h3 class="service-card__title">Контуринг</h3>
-              <p class="service-card__desc">Сяючі акценти навколо обличчя, які освіжають образ та додають зачісці об'єму. Ідеальний компроміс між змінами та збереженням натурального кольору.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="service-card" data-index="5">
-          <img class="service-card__photo" src="<?php echo $uri; ?>/assets/images/service-6.webp" alt="Жіноча стрижка">
-          <div class="service-card__inner">
-            <span class="service-card__num" aria-hidden="true">6</span>
-            <div class="service-card__text">
-              <h3 class="service-card__title">Жіноча стрижка</h3>
-              <p class="service-card__desc">Персональна архітектура форми під вашу текстуру волосся та овал обличчя. Стрижка укладається вдома швидко і без зусиль.</p>
-            </div>
-          </div>
-        </article>
+        <?php endfor; ?>
 
       </div>
 
       <div class="services__actions animation--fade-in">
-        <a href="#booking" class="btn btn--white">Записатися на процедуру</a>
+        <a href="#booking" class="btn btn--white"><?php rc('services_btn'); ?></a>
       </div>
 
     </section>
@@ -145,7 +99,7 @@ $uri = get_template_directory_uri();
     <div class="fears__ellipse" aria-hidden="true"></div>
 
     <h2 class="fears__title animation--fade-in">
-      Позбавляємо від страхів перед візитом до колориста
+      <?php rc('fears_title'); ?>
     </h2>
 
     <div class="fears__media">
@@ -153,35 +107,17 @@ $uri = get_template_directory_uri();
 
       <div class="fears__cards">
 
-        <article class="fear-card animation--fade-in stagger-1">
+        <?php for ( $n = 1; $n <= 3; $n++ ) : ?>
+        <article class="fear-card animation--fade-in stagger-<?php echo $n; ?>">
           <div class="fear-card__icon">
-            <img src="<?php echo $uri; ?>/assets/images/ic_card_1.svg" alt="" aria-hidden="true">
+            <img src="<?php echo $uri; ?>/assets/images/ic_card_<?php echo $n; ?>.svg" alt="" aria-hidden="true">
           </div>
           <div class="fear-card__text">
-            <h3 class="fear-card__title">«Раптом мені зроблять не той відтінок?»</h3>
-            <p class="fear-card__desc">Ми наочно розбираємо та узгоджуємо майбутній колір за палітрою. Ви побачите й зрозумієте реальний результат ще до того, як майстер візьме до рук пензлик.</p>
+            <h3 class="fear-card__title"><?php rc("fear_{$n}_title"); ?></h3>
+            <p class="fear-card__desc"><?php rc("fear_{$n}_desc"); ?></p>
           </div>
         </article>
-
-        <article class="fear-card animation--fade-in stagger-2">
-          <div class="fear-card__icon">
-            <img src="<?php echo $uri; ?>/assets/images/ic_card_2.svg" alt="" aria-hidden="true">
-          </div>
-          <div class="fear-card__text">
-            <h3 class="fear-card__title">«Фарбування спалить і зіпсує моє волосся»</h3>
-            <p class="fear-card__desc">Робота на м'яких преміум-системах (Wella, Inebrya, Helen Seward, Viart, Tempting). На кожному етапі структура волосся захищена, плюс ви отримуєте глибокий відновлювальний догляд у подарунок.</p>
-          </div>
-        </article>
-
-        <article class="fear-card animation--fade-in stagger-3">
-          <div class="fear-card__icon">
-            <img src="<?php echo $uri; ?>/assets/images/ic_card_3.svg" alt="" aria-hidden="true">
-          </div>
-          <div class="fear-card__text">
-            <h3 class="fear-card__title">«Сума в чеку наприкінці процедури стане сюрпризом»</h3>
-            <p class="fear-card__desc">Повна фінансова прозорість. Точний алгоритм дій та фінальна вартість фіксуються під час консультації й не змінюються в процесі.</p>
-          </div>
-        </article>
+        <?php endfor; ?>
 
       </div>
     </div>
@@ -195,7 +131,7 @@ $uri = get_template_directory_uri();
 
       <div class="steps__left">
         <h2 class="steps__title animation--fade-in">
-          5 кроків до ідеального кольору
+          <?php rc('steps_title'); ?>
         </h2>
 
         <div class="steps__portrait">
@@ -207,45 +143,15 @@ $uri = get_template_directory_uri();
 
       <div class="steps__cards">
 
+        <?php for ( $n = 1; $n <= 5; $n++ ) : ?>
         <article class="step-card">
-          <span class="step-card__badge">Крок 1</span>
+          <span class="step-card__badge">Крок <?php echo $n; ?></span>
           <div class="step-card__body">
-            <h3 class="step-card__title">Оцінка якості</h3>
-            <p class="step-card__desc">Детально дивимося на поточний стан та пористість волосся</p>
+            <h3 class="step-card__title"><?php rc("step_{$n}_title"); ?></h3>
+            <p class="step-card__desc"><?php rc("step_{$n}_desc"); ?></p>
           </div>
         </article>
-
-        <article class="step-card">
-          <span class="step-card__badge">Крок 2</span>
-          <div class="step-card__body">
-            <h3 class="step-card__title">Перевірка ресурсу</h3>
-            <p class="step-card__desc">Визначаємо, яке навантаження волосся витримає без втрати здоров'я.</p>
-          </div>
-        </article>
-
-        <article class="step-card">
-          <span class="step-card__badge">Крок 3</span>
-          <div class="step-card__body">
-            <h3 class="step-card__title">Тест-прядка</h3>
-            <p class="step-card__desc">Якщо ситуація складна, робимо приховану пробу, щоб на 100% спрогнозувати поведінку пігменту</p>
-          </div>
-        </article>
-
-        <article class="step-card">
-          <span class="step-card__badge">Крок 4</span>
-          <div class="step-card__body">
-            <h3 class="step-card__title">Підбір варіантів</h3>
-            <p class="step-card__desc">Пропонуємо техніки та відтінки, які підійдуть саме вам.</p>
-          </div>
-        </article>
-
-        <article class="step-card">
-          <span class="step-card__badge">Крок 5</span>
-          <div class="step-card__body">
-            <h3 class="step-card__title">Розрахунок вартості</h3>
-            <p class="step-card__desc">Фіксуємо ціну та точний час процедури до початку роботи.</p>
-          </div>
-        </article>
+        <?php endfor; ?>
 
       </div>
     </div>
@@ -262,34 +168,31 @@ $uri = get_template_directory_uri();
     <div class="about__top">
 
       <div class="about__photo animation--image-in">
-        <img src="<?php echo $uri; ?>/assets/images/about-photo.webp" alt="Римма Велькоброда — колорист та перукар">
+        <img src="<?php echo $uri; ?>/assets/images/about-photo.webp" alt="<?php echo esc_attr( get_theme_mod( 'about_name' ) ); ?> — колорист та перукар">
       </div>
 
       <div class="about__badge">
-        <span class="about__badge-num">25</span>
-        <span class="about__badge-text">років досвіду і&nbsp;вдосконалювання</span>
+        <span class="about__badge-num"><?php rc('about_years'); ?></span>
+        <span class="about__badge-text"><?php rc('about_badge_text'); ?></span>
       </div>
 
       <h2 class="about__title animation--fade-in">
-        Мій фокус — тільки<br>
-        професійна колористика,<br>
-        збереження здоров'я<br>
-        волосся та стрижки
+        <?php rc('about_title'); ?>
       </h2>
 
       <div class="about__author animation--fade-in stagger-2">
-        <span class="about__name">Римма Велькоброда</span>
-        <span class="about__role">Колорист, парикмахер</span>
+        <span class="about__name"><?php rc('about_name'); ?></span>
+        <span class="about__role"><?php rc('about_role'); ?></span>
       </div>
 
     </div>
 
     <div class="about__cta" id="consultation">
       <h3 class="about__cta-title animation--fade-in">
-        Отримайте безкоштовну консультацію для вашого волосся
+        <?php rc('about_cta_title'); ?>
       </h3>
       <a href="#booking" class="about__cta-btn animation--fade-in stagger-2">
-        Отримати консультацію
+        <?php rc('about_cta_btn'); ?>
       </a>
     </div>
 
@@ -307,23 +210,23 @@ $uri = get_template_directory_uri();
 
     <div class="contact__popup">
       <p class="contact__address">
-        м. Київ, Позняки/Осокорки,<br>вул. Срібнокільська&nbsp;1
+        <?php rc('contact_address_popup'); ?>
       </p>
       <a class="contact__map-link"
-         href="https://maps.google.com/?q=вул.+Срібнокільська+1,+Київ"
+         href="<?php ru('contact_maps_url'); ?>"
          target="_blank" rel="noopener noreferrer">
         Дивитися на Google мапі
       </a>
     </div>
 
-    <a class="contact__phone" href="tel:+380509575878">
-      +38 050 957 58 78
+    <a class="contact__phone" href="tel:<?php rc('contact_phone_tel'); ?>">
+      <?php rc('contact_phone_display'); ?>
     </a>
 
     <div class="contact__actions">
 
       <a class="contact__btn"
-         href="https://t.me/+380509575878"
+         href="<?php ru('contact_telegram_url'); ?>"
          target="_blank" rel="noopener noreferrer"
          aria-label="Написати в Telegram">
         <svg class="contact__btn-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -333,7 +236,7 @@ $uri = get_template_directory_uri();
       </a>
 
       <a class="contact__btn"
-         href="viber://chat?number=%2B380509575878"
+         href="<?php echo esc_attr( get_theme_mod( 'contact_viber_url' ) ); ?>"
          target="_blank" rel="noopener noreferrer"
          aria-label="Написати у Viber">
         <svg class="contact__btn-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
@@ -353,15 +256,15 @@ $uri = get_template_directory_uri();
       <div class="footer__logo">
         <img src="<?php echo $uri; ?>/assets/images/logo.svg" alt="Rimma" width="138" height="43">
       </div>
-      <span class="footer__copy">Rimma — Всі права захищені © 2026</span>
+      <span class="footer__copy"><?php rc('footer_copy'); ?></span>
     </div>
 
     <nav class="footer__nav" aria-label="Нижня навігація">
-      <a href="#" class="footer__link">Політика конфіденційності</a>
-      <a href="#" class="footer__link">Політика куки</a>
+      <a href="<?php ru('footer_link1_url'); ?>" class="footer__link"><?php rc('footer_link1'); ?></a>
+      <a href="<?php ru('footer_link2_url'); ?>" class="footer__link"><?php rc('footer_link2'); ?></a>
     </nav>
 
-    <a class="footer__credit" href="https://t.me/il_pi" target="_blank" rel="noopener noreferrer">
+    <a class="footer__credit" href="<?php ru('footer_credit_url'); ?>" target="_blank" rel="noopener noreferrer">
       Сайт створив ILYA PIVEN
     </a>
 
