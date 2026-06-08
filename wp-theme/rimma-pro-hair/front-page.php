@@ -2,12 +2,12 @@
 get_header();
 $uri = get_template_directory_uri();
 
-/* Хелпер: виводить значення з Customizer (з дефолтом) */
+/* Хелпери — читають значення через rimma_mod() (з дефолтами) */
 function rc( $key ) {
-    echo wp_kses( get_theme_mod( $key ), [ 'br' => [], 'strong' => [], 'em' => [], 'nbsp' => [] ] );
+    echo wp_kses( rimma_mod( $key ), [ 'br' => [], 'strong' => [], 'em' => [] ] );
 }
 function ru( $key ) {
-    echo esc_url( get_theme_mod( $key ) );
+    echo esc_url( rimma_mod( $key ) );
 }
 ?>
 
